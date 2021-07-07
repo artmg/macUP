@@ -17,26 +17,26 @@ for the details you would not want to share publicly.
 
 ### stages of setup process
 
-* [`about_setup.md`](https://github.com/artmg/macUP/blob/master/about_setup.md)
+* [`about_setup.md`](https://github.com/artmg/macUP/blob/main/about_setup.md)
 	* This is about getting the macOS installation process started, 
 including important stuff you want to consider before a reinstall.
-* [`application_installation.md`](https://github.com/artmg/macUP/blob/master/application_installation.md)
+* [`application_installation.md`](https://github.com/artmg/macUP/blob/main/application_installation.md)
 	* adding apps with very basic config
 	* some optional packages and maintenance steps
 	* **move** Terminal stuff **out** to Terminal below
-* [`terminal.md`](https://github.com/artmg/macUP/blob/master/terminal.md)
+* [`terminal.md`](https://github.com/artmg/macUP/blob/main/terminal.md)
 	* terminal software for command line access
-* [`network.md`](https://github.com/artmg/macUP/blob/master/network.md)
+* [`network.md`](https://github.com/artmg/macUP/blob/main/network.md)
 	* configuration and diagnostics for your connectivity
-* [`personalisation.md`](https://github.com/artmg/macUP/blob/master/personalisation.md)
+* [`personalisation.md`](https://github.com/artmg/macUP/blob/main/personalisation.md)
 	* general interface settings, including luanchpad, finder with actions, and spotlight search
 
 ### useful annexe pages
 
-* [`iOS_Apple_iPad_iPhone_reset.md`](https://github.com/artmg/macUP/blob/master/iOS_Apple_iPad_iPhone_reset.md)
+* [`iOS_Apple_iPad_iPhone_reset.md`](https://github.com/artmg/macUP/blob/main/iOS_Apple_iPad_iPhone_reset.md)
 	* how to wipe iOS devices (often need a Mac connected!)
-* [`misc.md`](https://github.com/artmg/macUP/blob/master/misc.md)
+* [`misc.md`](https://github.com/artmg/macUP/blob/main/misc.md)
 	* generic tips for smooth running 
 	* and help for troubleshooting
-* [`shortcuts.md`](https://github.com/artmg/macUP/blob/master/shortcuts.md)
+* [`shortcuts.md`](https://github.com/artmg/macUP/blob/main/shortcuts.md)
 	* keyboard combinations 

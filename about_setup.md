@@ -14,7 +14,7 @@ accounts used and data locations
 you will need to start again on a fresh machine.
 
 For an index of this repo,
-which also provides an overview of the steps involved, please see [README.md](https://github.com/artmg/macUP/blob/master/README.md). _NB: This file is called `'about' setup.md` as it's the starting point, so we wanted it to be alphabetically first._
+which also provides an overview of the steps involved, please see [README.md](https://github.com/artmg/macUP/blob/main/README.md). _NB: This file is called `'about' setup.md` as it's the starting point, so we wanted it to be alphabetically first._
 
 
 # Setup

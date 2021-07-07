@@ -11,7 +11,7 @@ used to install and configure a macOS device in an efficient, uniform and compre
 * SysPrefs / Sharing / Computer Name:
     * dynamic: uncheck
 
-If you later get issues with the computer automatically renaming itself see [macUP / network.md](https://github.com/artmg/macUP/blob/master/network.md)
+If you later get issues with the computer automatically renaming itself see [macUP / network.md](https://github.com/artmg/macUP/blob/main/network.md)
 
 
 ## Launchpad cleanup
