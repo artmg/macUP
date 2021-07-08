@@ -9,6 +9,41 @@ This part of the [macUP macOS setup process](https://github.com/artmg/macUP/) fo
 [macUP]() is a public repository 
 used to install and configure a macOS device in an efficient, uniform and comprehensive way.Any sensitive or personal settings should be kept separately in your own *Private Configuration Notes*.
 
+## Configuration
+
+## Diagnostics
+
+Includes some workarounds in the form of advanced configuration
+
+### Routing
+
+```
+# check the current routes
+netstat -rn
+
+# just show net routes for IPv4
+netstat -rn -f inet
+
+networksetup -listnetworkserviceorder
+```
+
+#### order
+
+Note that macOS routing choices is not weighted by a route priority so much as by range-specificity (prefer a route containing less addresses) and adapter priority
+
+```
+# check the current service order
+networksetup -listnetworkserviceorder
+
+# rearrange (needs full service name, not just en0 device id)
+networksetup -ordernetworkservices "Apple USB Ethernet Adapter" "USB 10/100/1000 LAN" "Wi-Fi" "Bluetooth PAN"
+```
+
+This is the equivalent of System Prefs / Network / (service list drop down) Set Service Order...
+
+Onc you reconnect (e.g. turn the wifi off and on again) the default routes will now be added in the 'right order'.
+
+
 
 ## Issues
 
@@ -46,3 +81,4 @@ for key in LocalHostName ComputerName  ; do sudo scutil --set $key $originalhost
 for key in LocalHostName ComputerName  HostName  ; do scutil --get $key; done
 # credit https://apple.stackexchange.com/a/301258
 ```
+
