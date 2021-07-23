@@ -15,6 +15,34 @@ used to install and configure a macOS device in an efficient, uniform and compre
 
 Includes some workarounds in the form of advanced configuration
 
+### General network diagnostics
+
+```
+# check your connections
+ifconfig
+
+# look at the AP cache for MAC addresses of recent connections
+arp -a
+```
+
+### Wireless
+
+```
+# show your wireless interfaces
+networksetup -listallhardwareports
+
+# show the wifi networks available
+airport -s
+
+# or 
+/System/Library/PrivateFrameworks/Apple80211.framework/
+Versions/Current/Resources/airport -s
+
+# if you can't see the airport command then make a link to it
+ln -s /System/Library/PrivateFrameworks/Apple80211.framework/
+Versions/Current/Resources/airport /usr/bin/airport
+```
+
 ### Routing
 
 ```
