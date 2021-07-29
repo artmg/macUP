@@ -55,13 +55,20 @@ netstat -rn -f inet
 networksetup -listnetworkserviceorder
 ```
 
-#### order
+#### Routing order
 
 Note that macOS routing choices is not weighted by a route priority so much as by range-specificity (prefer a route containing less addresses) and adapter priority
+
+An example use case for changing the order: you have an ethernet cable plugged into a new router whilst you configure it using local-only access, 
+but you still want to be able to access internet via your regular wifi connection
+
 
 ```
 # check the current service order
 networksetup -listnetworkserviceorder
+
+# check routes 
+netstat -rn -f inet
 
 # rearrange (needs full service name, not just en0 device id)
 networksetup -ordernetworkservices "Apple USB Ethernet Adapter" "USB 10/100/1000 LAN" "Wi-Fi" "Bluetooth PAN"
