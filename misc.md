@@ -270,7 +270,14 @@ consider the advanced volume controller app BackgroundMusic
 
 ## Troubleshooting
 
+### Attached devices
 
+If you want to know what accessories have been plugged in via USB 
+
+* `ioreg -p IOUSB -w0`
+	* add ` -l` to see loads of detail
+* `system_profiler SPUSBDataType`
+	* equivalent of the "System Information" UI app
 
 ## Disks
 
