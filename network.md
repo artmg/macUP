@@ -27,8 +27,10 @@ arp -a
 
 ### Wireless
 
+Try holding ⌥ (Option / Alt) key whilst clicking on the wireless icon in your toolbar
+
 ```
-# show your wireless interfaces
+# show your wifi interfaces
 networksetup -listallhardwareports
 
 # show the wifi networks available
