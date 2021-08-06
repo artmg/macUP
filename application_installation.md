@@ -76,9 +76,9 @@ cask 'keka'             # monolithic cabinet decompression (extract all files fr
 cask 'libreoffice'
 cask 'macdown'          # markdown editor with preview
 cask 'meld'             # diff or merge files and folders
-cask 'osxfuse'          # filesystems incl SSHFS
-brew 'ext4fuse'         # Ext2/3/4 RO access, mount via cli, depends osxfuse
-cask 'veracrypt'        # transparent volume encryption, depends osxfuse
+cask 'macfuse'          # filesystems incl SSHFS (formerly called osxfuse)
+brew 'ext4fuse'         # Ext2/3/4 RO access, mount via cli, depends macfuse
+cask 'veracrypt'        # transparent volume encryption, depends macfuse
 cask 'qownnotes'        # markdown notes editor / manager / syncer
 cask 'spotify'
 cask 'skype'
@@ -373,8 +373,8 @@ brew install --cask sequential            # folder image browser - very out of d
 brew install --cask skype-for-business    # if required for client
 brew install        smartmontools         # disk diagnostics where supported by drive
 brew install --cask speedcrunch           # calc
-brew install --cask sshfs                 # mount filesystems over ssh # may require osxfuse, pulls lots of depends (python,sqlite, etc)
-brew install --cask sublime-text          # markdown editor with ToC
+brew install --cask sshfs                 # mount filesystems over ssh # may require macfuse, pulls lots of depends (python,sqlite, etc)
+brew install --cask sublime-text          # text and markdown editor with ToC - nags a little but powerful
 brew install --cask openvpn-connect       # basic client for OpenVPN protocol
 brew install --cask tunnelblick           # more popular VPN client needs moving to Applications
 brew install --cask wireshark             # packet sniffer for network diagnostics
