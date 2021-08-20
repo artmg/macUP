@@ -80,7 +80,13 @@ This is the equivalent of System Prefs / Network / (service list drop down) Set 
 
 Onc you reconnect (e.g. turn the wifi off and on again) the default routes will now be added in the 'right order'.
 
+### Local services
 
+See what is listening on which ports
+
+```
+sudo lsof -i -P | grep LISTEN
+```
 
 ## Issues
 
