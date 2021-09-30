@@ -159,7 +159,7 @@ see also other ideas towards a dotless home:
 * macOS default folders https://developer.apple.com/library/content/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html#//apple_ref/doc/uid/TP40010672-CH2-SW1
 * 
 
-### Command line
+## Command line
 
 `zsh` is now the default on macOS, so this will 
 upgrade and configure it, make it work well with iTerm 
@@ -170,6 +170,8 @@ For help see:
 * switching from bash https://scriptingosx.com/2019/06/moving-to-zsh/
 * keybindings https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/key-bindings.zsh
     * using macos style combinations https://coderwall.com/p/a8uxma/zsh-iterm2-osx-shortcuts
+
+### Terminal
 
 * iTerm2
 	* Launch App / Right click in Dock icon / Options / Keep in Dock
@@ -184,6 +186,8 @@ For help see:
     * SysPrefsPriv / Accesibility / Allow iTerm
     * 
 
+
+### Zsh basics
 
 * NB next time: Change this to use $ZDOTDIR (`~/.config/zsh/`) 
 and move .iterm* and .oh-my-zsh into  `~/.local/bin/` subfolders
@@ -211,9 +215,11 @@ brew info zsh
 # install the latest
 brew install zsh
 # note the caveats on ncurses if that is an important library for your work 
-
+```
 
 ### iTerm shell integration
+
+```
 # credit https://www.iterm2.com/documentation-shell-integration.html
 
 
@@ -231,9 +237,11 @@ echo "source ~/.iterm2_shell_integration.${SHELL:5}" | cat >> ~/.profile
 REMOTE_SERVER=user@myserver
 curl -L https://iterm2.com/shell_integration/bash | ssh ${REMOTE_SERVER} 'cat > ~/.iterm2_shell_integration.bash'
 echo "source ~/.iterm2_shell_integration.bash" | ssh ${REMOTE_SERVER} 'cat >> ~/.bash_profile'
-
+```
 
 ### OhMyZsh
+
+```
 # credit https://github.com/ohmyzsh/ohmyzsh/#via-curl
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -280,6 +288,43 @@ export LESS="$LESS --no-init --quit-if-one-screen"
 
 * close and reopen the terminal to see it all working
 * to upgrade later use `omz update`
+
+### Shell personalisation
+
+```
+#### ^L to clear screen also clears scroll-back buffer
+
+cat >> ~/.config/zsh/.zle <<EndOfConfigZle
+
+function clear-scrollback-buffer {
+  # Behavior of clear: 
+  # 1. clear scrollback if E3 cap is supported (terminal, platform specific)
+  # 2. then clear visible screen
+  # For some terminal 'e[3J' need to be sent explicitly to clear scrollback
+  clear && printf '\e[3J'
+  # .reset-prompt: bypass the zsh-syntax-highlighting wrapper
+  # https://github.com/sorin-ionescu/prezto/issues/1026
+  # https://github.com/zsh-users/zsh-autosuggestions/issues/107#issuecomment-183824034
+  # -R: redisplay the prompt to avoid old prompts being eaten up
+  # https://github.com/Powerlevel9k/powerlevel9k/pull/1176#discussion_r299303453
+  zle && zle .reset-prompt && zle -R
+}
+
+zle -N clear-scrollback-buffer
+bindkey '^L' clear-scrollback-buffer
+
+# credit https://unix.stackexchange.com/a/531178
+
+EndOfConfigZle
+
+cat >> ~/.config/zsh/.zshrc <<EndOfConfigZshRC
+
+# include shell personalisation through Zle Zsh Line Editor
+source ~/.config/zsh/.zle
+
+EndOfConfigZshRC
+
+```
 
 ### Gnu Utils
 
