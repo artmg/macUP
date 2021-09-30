@@ -11,6 +11,14 @@ used to install and configure a macOS device in an efficient, uniform and compre
 
 ## Configuration
 
+### Reset all network settings
+
+If all else fails, you can wipe and restart your whole network configuration using the plist files mentioned here:
+
+http://otago.custhelp.com/app/answers/detail/a_id/3543/~/network-reset-instructions
+
+This technique leaves them in trash so you can recover them if it doesn't fix the issue.
+
 ## Diagnostics
 
 Includes some workarounds in the form of advanced configuration
@@ -88,6 +96,38 @@ See what is listening on which ports
 sudo lsof -i -P | grep LISTEN
 ```
 
+### Comprehensive diagnostic dump
+
+```
+NET_IF=en0
+ifconfig $NET_IF
+ifconfig
+arp -a
+networksetup -listallhardwareports
+netstat -rn -f inet
+networksetup -listnetworkserviceorder
+
+NET_SVC=Wi-fi
+networksetup -getinfo $NET_SVC
+networksetup -getadditionalroutes $NET_SVC
+networksetup -getv6additionalroutes $NET_SVC
+networksetup -getdnsservers $NET_SVC
+networksetup -getsearchdomains $NET_SVC
+networksetup -getwebproxy $NET_SVC
+ipconfig getpacket $NET_IF
+
+ping 8.8.8.8 -c 4 -t 3
+
+TEST_HOST=www.meter.net
+nslookup $TEST_HOST
+curl $TEST_HOST
+curl -v $TEST_HOST
+```
+
+The value for TEST_HOST is not massively significant. Preferably it could be a service you do not normally use, so that the hostname is NOT already in the DNS cache. 
+
+Most hosts, if you get their default page on http, should simply return a 301 redirect to their https site. 
+
 ## Issues
 
 ### rename on wake
@@ -124,4 +164,48 @@ for key in LocalHostName ComputerName  ; do sudo scutil --set $key $originalhost
 for key in LocalHostName ComputerName  HostName  ; do scutil --get $key; done
 # credit https://apple.stackexchange.com/a/301258
 ```
+
+### Lost connectivity on wifi change
+
+First noticed in 11.5.2
+
+Changing wireless connection, **especially** at the same time as coming out of suspend, would give connectivity issues. 
+
+Possible issues and checks:
+
+* Connectivity - ping
+* routes - 
+* DNS - flush
+* DHCP - wrong settings e.g. DNS
+
+Even when connectivity is there (e.g. ping 8.8.8.8 works) no name resolution is possible (cannot connect to new sites and nslookup example.com does not get response).
+
+Rebooting fixes the issue, but there must be a more direct method?!
+
+Tried:
+
+* Disable/reenable wifi in menu bar
+* chrome://net-internals/#dns - clear host cache
+* sudo killall -HUP mDNSResponder
+* Network Diagnostics Report cannot be created
+* 
+
+to try:
+
+* networksetup -setairportpower en0 off && networksetup -setairportpower en0 on
+	* should do same as ifconfig but without sudo
+* sudo ifconfig en0 down;sleep 1;sudo ifconfig en0 up
+	* sudo networksetup -setnetworkserviceenabled en0 off; sleep 10; networksetup -setnetworkserviceenabled en0 on
+	* try flushing route whilst down
+	* sudo route -n flush
+	* https://apple.stackexchange.com/a/325483
+* /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport
+* Renew in DHCP
+* SysPrefs / Nwck / each service (...) Make Service Inactive
+* Create a new Location with all network services disabled, and switch using SysPrefs or `scutil`
+	* `man scutil`
+* Look at kernel kld options - https://serverfault.com/a/220611
+
+
+The most useful discussion of working around or diagnosing such issues I have found is at https://serverfault.com/q/140327
 
