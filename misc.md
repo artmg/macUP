@@ -267,6 +267,20 @@ like `EarTrumpet` on Windows,
 consider the advanced volume controller app BackgroundMusic 
 (`brew install --cask background-music`).
 
+### Burn CD / DVD
+
+to prepare the audio track see Lubuild / films-and-songs.md#normalise-peak-amplitude
+
+* save your audio.wav as 16-bit 44,100Hz
+* Open Music (iTunes)
+* Create a new playlist called CD
+* Drop the wav file onto the Playlist
+* Menu / File / Burn Playlist to Disc
+	* Audio CD
+	* Burn
+* Wait a couple of minutes for it to finish
+* Eject the CD and test out the disc in an ordinary player
+
 
 ## Troubleshooting
 

@@ -377,6 +377,8 @@ Pick any of these as you need or want
 ```
 brew install --cask android-file-transfer # obtain data from phones and tablets
 brew install --cask anydesk               # remote desktop control without the nags of TeamViewer
+brew install        audacity              # sound file manipulation, works with ffmpeg
+brew install        ffmpeg                # add on features for audacity
 brew install --cask calibre               # eBook file converter
 brew install --cask clipy                 # clipboard buffer (alternatively 'flycut')
 brew install --cask dashlane              # Chrome credentials manager
