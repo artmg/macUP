@@ -281,6 +281,24 @@ to prepare the audio track see Lubuild / films-and-songs.md#normalise-peak-ampli
 * Wait a couple of minutes for it to finish
 * Eject the CD and test out the disc in an ordinary player
 
+According to [this Apple Music guide](https://support.apple.com/en-gb/guide/music/mus03854c438/mac) CDs you create with Music (iTunes) _will_ play in normal CD players, but DVDs will **only** play in computers. 
+If you want a non-data DVD, one that will play in a regular DVD player, then you could try one of these open-source programs available via homebrew:
+
+* burn
+    - simple, old favourite
+    - not updated since 2010 (but still in use) 
+* dvdstyler
+    - mature, cross-platform, in c++ with wxWidgets
+    - last mac build 2019, although X+Win updated 2021
+    - includes menu creation features
+
+You can use an online video downloading service if your media originates from YouTube, Vimeo, etc. 
+DVD uses 576i resolution, so it's not worth going for
+higher than 720p downloads. 
+
+The video be automatically converted by the burning program to use the MPEG-2 encoding at the correct resolution and framerate for the DVD standard, 
+put you might need to choose PAL format for Europe. 
+
 
 ## Troubleshooting
 
@@ -388,12 +406,17 @@ This utility _might_ be available from the Terminal in Recovery Mode.
 * Command Space for a spotlight window
 * You can also access via Siri https://support.apple.com/kb/PH25073 
 * From Sierra versions, the safari browser also includes SpotLight as a source for matches
-* To narrow your spotlight search you can add criteria such as  kind:document 
-https://support.apple.com/kb/PH25589?locale=en_GB 
-https://www.lifewire.com/manage-smart-search-safari-for-mac-4103702 
 * remote volumes are not targeted unless you choose Finder and select the volume
 * Apparently it also recognises scenes and expressions in photos! https://www.cultofmac.com/441365/how-to-search-your-photos-by-objects-and-scenery-in-macos-sierra/ 
 
+#### search criteria
+
+To narrow your spotlight search you can add [criteria from metadata attributes](https://support.apple.com/kb/PH25589?locale=en_GB), such as
+
+* kind:document 
+* modified:<=18/01/22
+
+See also https://www.lifewire.com/manage-smart-search-safari-for-mac-4103702 
 
 #### CLI utility
 
