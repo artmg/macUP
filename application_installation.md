@@ -397,7 +397,7 @@ brew install        jq                    # json handler for bash scripting
 brew install        libpst                # includes `readpst` for Outlook mailbox archives
 brew install --cask lingon-x              # view launchd services - cannot edit!!
 brew install --cask microsoft-teams       # video meeting client
-brew install --cask monitorcontrol        # adjust brightness etc via HDMI DCC
+brew install --cask monitorcontrol        # adjust brightness volume etc via HDMI DCC
 brew install --cask musicbrainz-picard    # music metadata tagger like mp3tag
 brew install        neovim                # vim-like editor
 brew install --cask obsidian              # markdown notes front-end
@@ -422,8 +422,12 @@ brew install        smartmontools         # disk diagnostics where supported by 
 brew install --cask speedcrunch           # calc
 brew install --cask sshfs                 # mount filesystems over ssh # may require macfuse, pulls lots of depends (python,sqlite, etc)
 brew install --cask sublime-text          # text and markdown editor with ToC - nags a little but powerful
-brew install --cask openvpn-connect       # basic client for OpenVPN protocol
+brew install        tesseract tesseract-lang  # OCR - CLI engine only
+
+# for GUI see https://github.com/artmg/lubuild/blob/master/help/manipulate/photos-and-images.md#optical-character-recognition-ocr
+
 brew install --cask tunnelblick           # more popular VPN client needs moving to Applications
+brew install --cask openvpn-connect       # basic client for OpenVPN protocol
 brew install --cask wireshark             # packet sniffer for network diagnostics
 brew install --cask yujitach-menumeters   # system tray activity indicator
 brew install        zbar                  # zbarimg reads QR and barcode from images (no java but uses old 2011 repo not mchehab fork)
