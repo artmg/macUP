@@ -42,6 +42,16 @@ we will look at **tmux** here because a) it is more actively developed, but main
 
 NB: many of the commands shown here are for Debian Linux, as you will tend to run them on your remote servers, not the macOS client you connect from. 
 
+```
+#### examples
+# create new named session
+tmux new -s mysession
+# show existing sessions
+tmux ls
+# attach to named target session
+tmux attach -t mysession
+```
+
 To send commands to the multiplexer you use 
 its attention keystroke (Ctrl-A for screen, 
 Ctrl-B for tmux) followed by commands. 
