@@ -36,7 +36,7 @@ Before doing any work on reinstallation you need:
 
 ### Structured data
 
-#### Configuration 
+#### Configuration data backup
 
 If you have a Private Configuration Note for your own data locations, check this as part of your pre-install backup
 
@@ -50,6 +50,10 @@ Consider copying config files from well-known locations:
 * ~/Library/Services
 	* custom automations
 
+```
+# check size vs value of home dotfolders you might want to copy
+du -hd 0 ~/.*
+```
 
 ## Other Procedures
 
