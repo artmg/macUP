@@ -191,6 +191,45 @@ Shared Albums.
 	* but selecting it in Photos stops it from also selecting the options: iCloud Photos and Photo Stream
 
 
+## Images
+
+### Photos app from Apple
+
+The Photos app, introduced on OS X Yosemite 10.10, replaced iPhoto and Aperture apps, that have not been supported since macOS Mojave 10.14. On iOS devices, the similarly branded Photos app replaced the Camera Roll app/
+
+The [Memories feature](https://support.apple.com/en-gb/guide/photos/pht96259d626/) (formerly 'Moment') on the Photos app can be used to categorise by metadata
+
+The Photos app, and other related app components like the Media Browser, rely on the [System Photo Library being configured](https://support.apple.com/en-gb/HT204414) e.g. Photos / Preferences / General. 
+
+By default, in your user folder, the Pictures / Photos Library contains your local library for the Photos app. You can export the entire thing by copying the folder using Finder. If you only want to export a portion: within the Photos app, select the photos/albums you want then File / Export / choose destination / Export Originals.
+
+
+#### Managing Photo Libraies
+
+Before you start making changes to Photos Libraries and their locations locally, see below to turn off iCloud Photo moving Libraries. 
+
+If you launch Photos app whilst holding Option button, you will be prompted for a new Photos Library location. Note that Photos Library folders on macOS have the `.photoslibrary` filename extension. The Option on startup will also allow you to create an additional local Photos Library, allowing you to have multiple locations (including external drives).  credit https://www.makeuseof.com/how-to-move-photos-library-to-external-drive-on-mac/
+
+If you have Multiple Photo Libraries, only the one that you have nominated as the System Photo Library (Photos / Preferences / General) can connect with iCloud features.
+
+### iCloud Photos
+
+The **iCloud Photo Library** is the portion of your photos that are stored within the iCloud paid (if above 5GB) subscription. The photos stored on your device locally can be a subset of these, with the 'Optimise Storage' feature: Photos / Preferences / iCloud / Optimise. 
+
+Alternatively, if you want to store all the images locally, for instance is you want to back them up, then use: Photos / Preferences / iCloud / Download Originals.
+
+You can use Shared Albums for photo sharing, to allow other iCloud users to view photos in your iCloud Library: Photos / Preferences / iCloud / Shared Albums – this turns on photo sharing.
+
+You can also create a private iCloud.com website for those without iCloud accounts.
+
+The System Photo Library (nominated via Photos / Preferences / General) is the one that connects with iCloud features. This is only relevant if you have Multiple Photo Libraries, otherwise the default system library is connected automatically. 
+
+When you import items, they will only sync with iCloud (if it is your System Photo Library and) if you check the Copy items to the Photo Library.
+
+Disconnecting iCloud when moving a library on your local device (ref https://www.imore.com/how-use-photos-mac-external-hard-drive or https://www.macworld.co.uk/how-to/move-photos-hard-drive-3681943/ )
+
+The processes involved in the synchronisation are `cloudd` that directs `cloudphotod` to fetch the content and `photolibraryd` that organises it on arrival.
+
 
 ## VirtualBox tips
 
