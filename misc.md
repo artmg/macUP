@@ -190,6 +190,28 @@ Shared Albums.
 * this will place a tick in the main AppleID / Photos line
 	* but selecting it in Photos stops it from also selecting the options: iCloud Photos and Photo Stream
 
+### Keychain
+
+The macOS keychain is where passwords are stored, for Safari browser and other apps. You can access its contents through, the following - the first two are essentially the same management interface, which also supports Two Factor Authentication (2FA) and the third is a more technical way to view and edit contents.
+
+* Safari / Preferences / Passwords
+* Preferences / System / Passwords
+* Keychain Access.app in the launchpad Utilities folder
+
+The latter shows you, and allows you to search within, the individual encrypted keychain files such as:
+
+* iCloud - synced between your devices
+* System - wifi networks and system roots
+* login - automatically unlocked by user logon
+
+Items within the keychains include types:
+
+* passwords - also synced to iOS devices
+* Secure Notes - macos only manual entries
+* Certificates and Keys - for asynchronously encrypted services
+
+Individual iCloud items can be shared from iOS via AirDrop
+
 
 ## Images
 
