@@ -331,7 +331,7 @@ If you want a non-data DVD, one that will play in a regular DVD player, then you
     - last mac build 2019, although X+Win updated 2021
     - includes menu creation features
 
-You can use an online video downloading service if your media originates from YouTube, Vimeo, etc. 
+You can use VLC to find the temporary download URL if your media originates from YouTube, Vimeo, etc. See https://github.com/artmg/lubuild/blob/master/help/manipulate/films-and-songs.md#online-video-caching
 DVD uses 576i resolution, so it's not worth going for
 higher than 720p downloads. 
 
