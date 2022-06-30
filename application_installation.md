@@ -59,7 +59,6 @@ cask 'cantata'
 cask 'dropbox'
 cask 'dupeguru'         # find and remove duplicate files
 cask 'balenaetcher'     # write boot image to usb
-cask 'evernote'
 cask 'firefox'          # still some peoples favourite browser
 cask 'freac'            # rip audio cds - alternative is xld
 cask 'geany'            # capable editor or lite ide
@@ -383,6 +382,7 @@ brew install --cask calibre               # eBook file converter
 brew install --cask clipy                 # clipboard buffer (alternatively 'flycut')
 brew install --cask dashlane              # Chrome credentials manager
 brew install --cask eqmac                 # eqMac2 audio equaliser 
+brew install --cask evernote              # popular freemium note sync client
 brew install        exiftool              # display metadata, e.g. from image files
 brew install --cask db-browser-for-sqlite # sql lite browser
 brew install --cask freecad               # CAD design in 3d
@@ -515,7 +515,9 @@ brew install vitorgalvao/tiny-scripts/cask-repair
 cask-repair --help
 ```
 
-### enumerate packages installed
+### Brew diagnostics
+
+#### enumerate packages installed
 
 ```
 brew bundle dump
@@ -523,6 +525,10 @@ brew bundle dump
 
 This will create a `Brewfile` in the current folder listing the apps installed
 
+#### Filesystem locations
+
+* /usr/local/Cellar
+* /usr/local/Caskroom
 
 ### DEPRECATED
 
