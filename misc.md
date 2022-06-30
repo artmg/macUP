@@ -372,6 +372,26 @@ If you want to know what accessories have been plugged in via USB
 * `system_profiler SPUSBDataType`
 	* equivalent of the "System Information" UI app
 
+### startup processes
+
+See what apps and executables launch automatically on startup. 
+
+* Per-user apps
+	* System Prefs / Users & Groups / select user / Login Items
+	* Finder / Go / Library / Launch Agents
+		* though this is not always the safest place to remove things
+* System-wide
+	* via Finder: 
+		* /Library/StartupItems
+		* /Library/LaunchDaemons
+		* /Library/LaunchDaemons
+		* The /System versions of these are unlikely to have any user-changeable apps
+
+Although this is a diagnostic way to identify apps, 
+deleting items here is not a reliable method to start them from starting up. Consider uninstalling components you no longer require, 
+or look in the startup options inside the application's Preferences menu. 
+
+
 ## Disks
 
 See also:
