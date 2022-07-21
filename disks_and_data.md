@@ -112,9 +112,9 @@ Back up your data first in you are unsure.
 This utility _might_ be available from the Terminal in Recovery Mode.
 
 
-### Spotlight search indexing
+## Spotlight search indexing
 
-#### about
+### about
 
 * Spotlight Search is the default in-built indexing and search service
 * Command Space for a spotlight window
@@ -123,7 +123,7 @@ This utility _might_ be available from the Terminal in Recovery Mode.
 * remote volumes are not targeted unless you choose Finder and select the volume
 * Apparently it also recognises scenes and expressions in photos! https://www.cultofmac.com/441365/how-to-search-your-photos-by-objects-and-scenery-in-macos-sierra/ 
 
-#### search criteria
+### search criteria
 
 To narrow your spotlight search you can add [criteria from metadata attributes](https://support.apple.com/kb/PH25589?locale=en_GB), such as
 
@@ -132,7 +132,7 @@ To narrow your spotlight search you can add [criteria from metadata attributes](
 
 See also https://www.lifewire.com/manage-smart-search-safari-for-mac-4103702 
 
-#### CLI utility
+### CLI utility
 
 Spotlight depends on the Metadata Server to collect file information 
 in the background as you work. There are a number of md* utilities including:
@@ -149,7 +149,7 @@ mdimport /path/to/folder
 mdfind
 ```
 
-#### Technical background
+### Technical background
 
 * mds (metedata server) is the parent process for Spotlight workers
 * use the ` mdutil -sav ` command above to see volume indexing status
@@ -173,8 +173,7 @@ credit: https://care.qumulo.com/hc/en-us/articles/115008514788-Mac-OS-X-Spotligh
 sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
 
 
-#### Indexing encrypted disks
-
+### Indexing encrypted disks
 
 ```
 # current status
@@ -192,6 +191,7 @@ sudo mdutil -L /Volumes/MyVol
 
 Despite the fact that `sudo ls` won't show it, 
 this last command DOES show the locations INSIDE the volume.
+
 Once indexing has completed the size of these 
 index directory contents total to around seven percent 
 of the actual file data content size on the disk, 
@@ -199,7 +199,7 @@ and this addition is reflected in the 'Used on disk' total,
 alongside the other 5-7% already 'occupied' 
 by other disk storage overhead. 
 
-##### old
+### old
 
 Is macOS sensible enough to create the image for a disk volume that is encypted *inside* the volume, to stop secrets being visible in plaintext _outside_ the volume? Is this also the case with third-party volume encryption? Can we check the index size to see it's really going to the right place?
 
@@ -209,7 +209,7 @@ e.g.
 	* https://eclecticlight.co/2018/06/26/hidden-caches-in-macos-where-your-private-data-gets-stored/
 
 
-#### prevent external disk indexing
+### prevent external disk indexing
 
 If you plug in an external disk drive that is writable, Spotlight will begin indexing it whether you want it to or not. 
 If you want to stop the Spotlight Indexing on a drive use:
@@ -218,7 +218,7 @@ If you want to stop the Spotlight Indexing on a drive use:
 * + to add a location to prevent Searching
 * Browse to the drive root
 
-##### programmatic methods
+#### programmatic methods
 
 you used to be able to `touch .metadata_never_index` 
 in a folder to prevent indexing, but now its a 
@@ -230,7 +230,7 @@ sudo defaults write /Volumes/foo/.Spotlight-V100/VolumeConfiguration.plist Exclu
 sudo launchctl stop com.apple.metadata.mds && sudo launchctl start com.apple.metadata.mds
 ```
 
-##### Find when not indexed
+#### Find when not indexed
 
 If you are in Finder, in a filesystem that is excluded from indexing, then how do you quickly and easily perform a unix 'find' for a file from your location?
 
@@ -244,7 +244,7 @@ find . -iname "*string*"
 grep -R 'string' .
 ```
 
-#### Rebuild the index
+### Rebuild the index
 
 If you want to rebuild the index on a folder or volume:
 
@@ -260,6 +260,48 @@ In the background spotlight will first clear down the old index then rebuild it 
 
 ## Time Machine backup
 
+### About
+
+The great thing about TimeMachine backups is that you 
+barely need to think about it. That actually makes it quite tough 
+to pin down the list of features it has, off the top of your head.
+
+* keep versioned file snapshots
+* automatically prune old ones when it runs out of space
+* keep hourly backups from the past 24 hours
+* prompt the user to start backing up when they plug in a new disk
+* automatically do the backup when the disk is plugged in again
+* work with network-connected volumes, automatically backing up when you are connected to that network
+* store the backup data in the form of human-readable filesystem entries rather than an opaque database that needs specialized software to open
+* preserve timestamps and extended attributes
+
+initial credit https://www.reddit.com/r/kde/comments/qke1hw/comment/hix1lm6/?utm_source=reddit&utm_medium=web2x&context=3
+
+For alternative open-source alternatives, especially focussing on 
+linux-like operating systems, see [Lubuild | Use | Backup solution](https://github.com/artmg/lubuild/blob/master/help/use/backup-solution.md)
+
+### Getting started
+
+When you first plug in your drive, your will see the 'use for Time Machine?' dialog. 
+If you are not sure that you have it configured properly already, then answer "Decide Later".
+
+* Time Machine partition must be HFS+
+	* Not recommended to be APFS
+	* suggestions around 2x to 3x capacity of internal drive
+		-  http://osxdaily.com/2013/05/01/use-single-hard-drive-time-machine-and-file-storage/
+* Use Disk Utility (Launchpad / Other)
+	* Unmount and erase any NTFS partition supplied
+	* Use the Partition Tab 
+		* to create a Mac OS Extended (Journaled) partition and assign a name
+
+### more technical background
+
+* Time Machine uses something called sparse bundle
+		* https://discussions.apple.com/thread/7728281
+* About encryption in TM backup:
+	* https://support.apple.com/kb/ph25615?locale=en_US
+
+
 ### Log diagnostics
 
 ```
@@ -272,6 +314,74 @@ log show --style syslog  --predicate 'senderImagePath contains[cd] "TimeMachine"
 # watch DEBUG level logs for Time Machine backups as they happen
 log stream --style syslog  --predicate 'senderImagePath contains[cd] "TimeMachine"' --debug
 ```
+
+### offer a Linux Samba share
+
+Sample samba.conf.master:
+
+```
+sudo mkdir -p /mnt/HDD/TimeMachine
+sudo chmod 777 /mnt/HDD/TimeMachine
+
+sudo tee /etc/samba/smb.conf.master <<EOF!
+[global]
+server string = My Time Machine Server
+# allow logon without password
+map to guest = bad user
+
+# Apple macOS Time Machine global settings
+min protocol = SMB2
+fruit:encoding = native
+
+fruit:model = MacPro # MacSamba
+
+fruit:delete_empty_adfiles = yes
+fruit:wipe_intentionally_left_blank_rfork = yes
+fruit:veto_appledouble = no
+fruit:posix_rename = yes
+
+fruit:metadata = stream
+idmap config * : backend = tdb
+vfs objects = catia fruit streams_xattr
+
+[TimeMachineBackup]
+comment = Back up Mac with Time Machine
+guest ok = Yes
+path = /mnt/HDD/TimeMachine
+read only = No
+fruit:time machine max size = 900G
+fruit:time machine = yes
+
+EOF!
+```
+
+#### configuration notes
+
+The `max size` caused issues in versions before 4.12 
+if the value was multi-hundred gigabyte it caused an overflow 
+and failed. If you don't mind all your disk volume filling with Time Machine backups, then you won't need it.
+
+According to https://www.samba.org/samba/docs/current/man-html/vfs_fruit.8.html
+
+        fruit:time machine = yes
+
+forces the following defaults in its scope (Global or Share)
+
+        durable handles = yes
+        kernel oplocks = no
+        kernel share modes = no
+        posix locking = no
+
+
+### Debugging
+
+* Hooking up GDB directly over ssh session
+	* https://wiki.samba.org/index.php/Writing_a_Samba_VFS_Module#Debugging
+* Example of remote debugging using gdb
+	* https://visualgdb.com/tutorials/raspberry/crossgdb/
+* 
+
+
 
 ### Network Connections
 
