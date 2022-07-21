@@ -6,8 +6,12 @@ This part of the [macUP macOS setup process](https://github.com/artmg/macUP/) fo
 * diagnostics
 * advanced configuration
 
-[macUP]() is a public repository 
+[macUP](https://github.com/artmg/macUP/) is a public repository 
 used to install and configure a macOS device in an efficient, uniform and comprehensive way.Any sensitive or personal settings should be kept separately in your own *Private Configuration Notes*.
+
+See also:
+
+* [misc](misc.md) for more general tips
 
 ## Configuration
 
@@ -24,6 +28,8 @@ This technique leaves them in trash so you can recover them if it doesn't fix th
 Includes some workarounds in the form of advanced configuration
 
 ### General network diagnostics
+
+If you just want to show your IP address, or check the basic wireless or ethernet configuration...
 
 ```
 # check your connections
