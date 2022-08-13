@@ -55,15 +55,15 @@ brew 'transmission'   # torrent client
 brew 'mas'            # cli interface to Mac App Store
 
 # install apps
+cask 'balenaetcher'     # write boot image to usb
 cask 'cantata'
 cask 'dropbox'
 cask 'dupeguru'         # find and remove duplicate files
-cask 'balenaetcher'     # write boot image to usb
 cask 'firefox'          # still some peoples favourite browser
 cask 'freac'            # rip audio cds - alternative is xld
 cask 'geany'            # capable editor or lite ide
-cask 'gitahead'         # foss gui for git workflows
 cask 'gimp'             # raster image manipulation
+cask 'gitahead'         # foss gui for git workflows
 cask 'google-chrome'
 cask 'gramps'           # genealogy database
 cask 'grandperspective' # visual display of disk size used by files in tree
@@ -74,13 +74,13 @@ cask 'keepassx'
 cask 'keka'             # monolithic cabinet decompression (extract all files from zip 7z)
 cask 'libreoffice'
 cask 'macdown'          # markdown editor with preview
-cask 'meld'             # diff or merge files and folders
 cask 'macfuse'          # filesystems incl SSHFS (formerly called osxfuse)
 brew 'ext4fuse'         # Ext2/3/4 RO access, mount via cli, depends macfuse
 cask 'veracrypt'        # transparent volume encryption, depends macfuse
+cask 'meld'             # diff or merge files and folders
 cask 'qownnotes'        # markdown notes editor / manager / syncer
-cask 'spotify'
 cask 'skype'
+cask 'spotify'
 cask 'stats'            # menu bar system monitor
 cask 'virtualbox'       # VM environment
 cask 'virtualbox-extension-pack'

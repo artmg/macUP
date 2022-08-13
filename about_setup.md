@@ -32,6 +32,7 @@ Before doing any work on reinstallation you need:
 * list of applications
 	* will you remember which apps you will want to reinstall?
 	* check using `brew bundle dump` to create a new Brewfile based on what you have asked to be installed
+		* compare this to [application_installation](application_installation.md)
 * 
 
 ### Structured data
