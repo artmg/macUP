@@ -375,6 +375,25 @@ If you want to know what accessories have been plugged in via USB
 * `system_profiler SPUSBDataType`
 	* equivalent of the "System Information" UI app
 
+### files in use
+
+If you want to know which process is using (locking) a given file, or preventing a volume from being dismounted, you can show it/them using the list open files (lsof) command...
+
+``` sh
+# basic list in process order
+sudo lsof
+
+# just containing keyword
+sudo lsof | grep myFileContains
+
+# specific file or volume
+sudo lsof /Volumes/MyDiskUnit
+
+# any file in a folder or subfolder
+sudo lsof +D /path/to/folder
+```
+
+
 ### startup processes
 
 See what apps and executables launch automatically on startup. 
