@@ -5,13 +5,55 @@ This sets out the general intefrace, including luanchpad, finder with actions, a
 It is part of the [macUP macOS setup process](https://github.com/artmg/macUP/) – a public repository 
 used to install and configure a macOS device in an efficient, uniform and comprehensive way. Any sensitive or personal settings should be kept separately in your own *Private Configuration Notes*.
 
+## Identity
 
-## Rename
+### Set host name
 
-* SysPrefs / Sharing / Computer Name:
-    * dynamic: uncheck
+```
+NEWHOSTNAME="MyMac"
 
-If you later get issues with the computer automatically renaming itself see [macUP / network.md](https://github.com/artmg/macUP/blob/main/network.md)
+# First see current values
+scutil --get ComputerName
+scutil --get HostName
+scutil --get LocalHostName
+
+# now set and validate the new values
+sudo scutil --set ComputerName "${NEWHOSTNAME}"
+sudo scutil --set HostName "${NEWHOSTNAME}"
+sudo scutil --set LocalHostName "${NEWHOSTNAME}"
+
+scutil --get ComputerName
+scutil --get HostName
+scutil --get LocalHostName
+```
+
+Previously done manually via SysPrefs / Sharing / Computer Name (and dynamic: uncheck)
+
+If you later get issues with the computer automatically renaming itself see [macUP / network.md # Computer name changes](network.md#computer-name-changes) 
+
+### Apple ID
+
+You do not need to associate an Apple ID account with your macOS device, unless you wish to use certain services:
+
+* Apple Purchases
+	* App Store
+	* AppleTV or Apple Music
+* iCloud
+	* sharing docs, notes, photos, videos etc to cloud and other devices
+	* manage your iCloud subscription
+	* (_and seemingly most of the other features_)
+* Security (probably all part of iCloud above, actually)
+	* Find My (Mac)
+	* FileVault recovery from forgetten password
+	* iCloud Keychain 
+
+See [macUP/misc.md # iCloud  key-transaction-settings](misc.md#key-transaction-settings) for subscription or payment changes that you might need to sign into iCloud to do. 
+
+### User photo
+
+* use (or take) a recent mugshot for the local User account
+* this will be adopted as the AppleID photo and the Anydesk badge
+* could not find _any_ way to obtain the photo OUT of AppleID into local User, but you can extract the local user photo using `dscl . -read /Users/${USER} JPEGPhoto | tail -1 | xxd -r -p > ${HOME}/Desktop/accountImage.jpg` (credit https://apple.stackexchange.com/a/44959)
 
 
 ## Launchpad cleanup
@@ -50,6 +92,16 @@ defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
 # Show Library folder
 chflags nohidden ~/Library
 
+# Disable Notification Center and remove the menu bar icon
+launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
+
+```
+
+# Finder
+
+```
+# credit https://www.taniarascia.com/setting-up-a-brand-new-mac-for-development/#defaults
+
 # Show hidden files
 defaults write com.apple.finder AppleShowAllFiles YES
 # Show path bar
@@ -61,19 +113,19 @@ defaults write com.apple.finder ShowStatusBar -bool true
 # expand Save panel
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
-# Disable Notification Center and remove the menu bar icon
-launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
+
 # Use list view in all Finder windows by default
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
 # To modify items in the finder sidebar, 
 # consider https://github.com/robperc/FinderSidebarEditor
 
-
 ```
-# Finder - STILL MANUAL...
-	* (consider instead https://github.com/robperc/FinderSidebarEditor)
+
+
+## - STILL MANUAL...
 * Preferences / Sidebar
+	* _(consider instead https://github.com/robperc/FinderSidebarEditor)_
 	* Remove AirDrop, Applications, Documents, iCloud Drive, 
 	* Add Home (`user`), Root (`user`s MacBook) 
 * Preference / Settings
@@ -83,6 +135,8 @@ defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 * drag into Favourites:
 	* Cached / Repos
 	* 
+
+## Menu bar
 
 ```
 # credit https://apple.stackexchange.com/a/337179
