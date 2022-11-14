@@ -136,16 +136,20 @@ Most hosts, if you get their default page on http, should simply return a 301 re
 
 ## Issues
 
-### rename on wake
+### Computer name changes
 
 `Computer hostmame already on network`
 
-In some circumstances macOS can automatically change the hostname. It does this to avoid duplicates, for instance if you 
-multi-home your device by using both wifi and ethernet onto the 
-same subnet (especially if you are using DHCP). 
+In some circumstances macOS can automatically change the hostname. It does this to avoid duplicates, but this duplicate avoidance could be unintentionally triggered if, for instance:
 
-However it can also do this inadvertently when it comes out of resume.
-You may see the message 
+* you multi-home your device by using both wifi and ethernet onto the 
+same subnet
+	* especially if you are using DHCP-linked-DNS
+	* or if you maintain aliases on your router
+* your network has an Avahi (Bonjour) repeater, which effectively caches your computer hostname elsewhere
+	* you could try reducing the risk of Bonjour causing renaming if you turn off ALL the sharing services under System Preferences / Sharing, but unchecking all items
+
+However it can also do this inadvertently when it comes out of resume (rename on wake). You may see the message 
 
 ```
 This computer's hostname is already in use on this network. 
@@ -170,6 +174,9 @@ for key in LocalHostName ComputerName  ; do sudo scutil --set $key $originalhost
 for key in LocalHostName ComputerName  HostName  ; do scutil --get $key; done
 # credit https://apple.stackexchange.com/a/301258
 ```
+
+At the end of the day, however irritating it may seem to see this number changing, ComputerName is a local self-reference, used for Bonjour advertising, and does not affect the hostname that is used for DNS registration and therefore for remote reference or connection to your machine.
+
 
 ### Lost connectivity on wifi change
 
