@@ -213,8 +213,13 @@ Items within the keychains include types:
 * Secure Notes - macos only manual entries
 * Certificates and Keys - for asynchronously encrypted services
 
-Individual iCloud items can be shared from iOS via AirDrop
+Individual iCloud items can be shared from iOS via AirDrop. For instance if you wish to share a single set of login credentials use Preferences / Passwords / Share / AirDrop. If however you wish to share a copy of the entire keychain it is usually more complex. 
 
+#### Cached keychain
+
+As a simpler workaround, consider adding a new macOS user, and signing into AppleID. That way you get to choose which iCloud feature data is cached into the local folders, including of course the Keychain. The keychain _should_ be encrypted using the principle device passcode for that account, but do consider ensuring the using FileVault full disk encryption on the drive holding the cache. 
+
+Holding a device signed into that account also confers the other privileges, such as allowing other sign-ins to be trusted, so protect the device and local account well. 
 
 ## Images
 
@@ -366,7 +371,7 @@ put you might need to choose PAL format for Europe.
 
 ## Troubleshooting
 
-### Attached devices
+### Attached USB devices
 
 If you want to know what accessories have been plugged in via USB 
 
@@ -374,6 +379,7 @@ If you want to know what accessories have been plugged in via USB
 	* add ` -l` to see loads of detail
 * `system_profiler SPUSBDataType`
 	* equivalent of the "System Information" UI app
+* manual GUI: menu bar Apple button / About this Mac / System Report
 
 ### files in use
 
