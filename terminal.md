@@ -394,16 +394,19 @@ EndOfConfigZle
 The coreutils and findutils have been installed by brew, 
 but you can use them instead of macOS / FreeBSD equivalents, 
 e.g. ls instead of gls or find instead of gfind, 
-to allow seemless switching between mac and linux hosts
+to allow seemless switching between mac and linux hosts. 
+Also take the latest openssh so that you can generate ed25519 keys
 
 ```
-brew install coreutils findutils gnu-sed
+brew install coreutils findutils gnu-sed openssh
 
 cat >> ${ZDOTDIR}/.zshrc <<EndOfConfigZshRC
 
 # prefer GNU utilities over FreeBSD variety that come with macOS
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/findutils/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:\$PATH"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/findutils/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/bin:\$PATH"
 
 EndOfConfigZshRC
 ```
+
+If you find that putting /usr/local/bin in front causes any other contentions, then you may need another hack to put the openssh executables ssh* in front. You can test ssh utility versions with `ssh -V`.
 
