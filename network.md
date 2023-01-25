@@ -205,6 +205,7 @@ Tried:
 
 to try:
 
+* diagnose in alternative browser in case it is a lock-up just in the browser. If using Chrome try chrome://restart
 * networksetup -setairportpower en0 off && networksetup -setairportpower en0 on
 	* should do same as ifconfig but without sudo
 * sudo ifconfig en0 down;sleep 1;sudo ifconfig en0 up
