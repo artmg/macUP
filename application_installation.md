@@ -60,7 +60,7 @@ cask 'firefox'          # still some peoples favourite browser
 cask 'freac'            # rip audio cds - alternative is xld
 cask 'geany'            # capable editor or lite ide
 cask 'gimp'             # raster image manipulation
-cask 'gitahead'         # foss gui for git workflows
+cask 'gittyup'          # foss gui for git workflows, fork of gitahead
 cask 'google-chrome'    # fully featured browser if you have no objections
 cask 'grandperspective' # visual display of disk size used by files in tree
 cask 'hex-fiend'        # hex viewer / editor / compare
