@@ -311,9 +311,14 @@ log show --style syslog  --predicate 'senderImagePath contains[cd] "TimeMachine"
 # Show INFO level logs for Time Machine backups for specific date range
 log show --style syslog  --predicate 'senderImagePath contains[cd] "TimeMachine"' --info --start '2020-03-17 00:00:00' --end '2020-03-18 00:00:00' 
 
+# Show INFO level logs for containing specific text (etc)
+log show --style syslog  --predicate 'senderImagePath contains[cd] "TimeMachine" and eventMessage contains "Identity check failed"' --info --last 48h
+
 # watch DEBUG level logs for Time Machine backups as they happen
 log stream --style syslog  --predicate 'senderImagePath contains[cd] "TimeMachine"' --debug
 ```
+
+Note that the Predicate (query) Programming Guide (in Cocoa) defines `contains[cd]` as 'Case and diacritic insensitive lookups'.
 
 ### offer a Linux Samba share
 
