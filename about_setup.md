@@ -11,13 +11,15 @@ inspect any old setup you may have, to
 ensure these private notes contain all 
 the relevant application configuration, 
 accounts used and data locations 
-you will need to start again on a fresh machine.
+you will need to start again on a fresh (or freshly rebuilt) machine.
 
 For an index of this repo,
 which also provides an overview of the steps involved, please see [README.md](https://github.com/artmg/macUP/blob/main/README.md). _NB: This file is called `'about' setup.md` as it's the starting point, so we wanted it to be alphabetically first._
 
 
 # Setup
+
+This presumes that you will not be using any macOS install-time technique to bring forward your old data, apps and settings, such as recovering them from Time Machine. This presumtion is based on the idea that you want a fresh start on the new (-ly rebuilt) machine. 
 
 ## full backup
 
@@ -90,17 +92,25 @@ See help - https://support.apple.com/en-au/HT201065
 
 ### Disk protection
 
-Encrypt Startup disk: System Prefs / Security and Privacy / FileVault / Turn on / Display Recovery Key - store in safe place
-Show hard drives: Finder / Preferences (from top menu or ⌘-,) / General / Show / Check Hard Disks 
-See also Service.IN encryption
+You may have some personal notes on setting up with Disk Encryption that you wish to refer to. You might also consider leaving this step until later, when you have any private data store available, so that you can safely store the recovery key.
+
+* Encrypt Startup disk: 
+	* System Prefs / Security and Privacy / FileVault / Turn on /
+	* Display Recovery Key - store in safe place
+* Show hard drives: 
+	* Finder / Preferences (from top menu or ⌘-,) / 
+	* General / Show / Check Hard Disks 
  
 ### Firewall
 
-Turn on: System Prefs / Security and Privacy / Firewall / Turn On 
+* Turn the firewall on: 
+* System Prefs / Network / Firewall
+	* in earlier macOS versions was System Prefs / Security and Privacy / Firewall
+* Turn On 
+	* … leave default options for now
 
-… leave default options for now
-
-Turn OFF: System Prefs / Sharing
+* Turn OFF Sharing
+* System Prefs / (General /) Sharing
 
 Set Computer Name as per Devices and Configs
 

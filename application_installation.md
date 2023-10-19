@@ -22,6 +22,16 @@ but brew has a good set of features and is popular so attracts many packages
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ```
 
+### Zsh compatibility
+
+If you get the error `zsh: brew: command not found` then you need to integrate brew into that shell's environment
+
+```
+echo "export PATH=/opt/homebrew/bin:$PATH" >> ~/.zshrc
+```
+
+and reopen the prompt for it to take effect.
+
 ### Xcode 
 
 The homebrew installation also now includes a version of Xcode CLI tools. 
