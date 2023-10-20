@@ -1,4 +1,4 @@
-# macOS networking
+# macOS networking
 
 This part of the [macUP macOS setup process](https://github.com/artmg/macUP/) focuses on: 
 
@@ -174,6 +174,8 @@ for key in LocalHostName ComputerName  ; do sudo scutil --set $key $originalhost
 for key in LocalHostName ComputerName  HostName  ; do scutil --get $key; done
 # credit https://apple.stackexchange.com/a/301258
 ```
+
+For an explanation of the different types of computer/host name in macOS see [this useful reference](https://ilostmynotes.blogspot.com/2012/03/computername-vs-localhostname-vs.html)
 
 At the end of the day, however irritating it may seem to see this number changing, ComputerName is a local self-reference, used for Bonjour advertising, and does not affect the hostname that is used for DNS registration and therefore for remote reference or connection to your machine.
 
