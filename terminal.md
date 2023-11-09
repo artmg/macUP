@@ -60,7 +60,7 @@ we will look at **tmux** here because a) it is more actively developed, but main
 
 NB: many of the commands shown here are for Debian Linux, as you will tend to run them on your remote servers, not the macOS client you connect from. 
 
-```
+```sh
 #### examples
 # create new named session
 tmux new -s mysession
@@ -97,7 +97,7 @@ into a muxed shell.
 
 If you are running multiple processes (e.g. piped commands) you can steal the entire session using **-T**
 
-```
+```sh
 # start a new session called myname
 tmux new -s myname
 
@@ -113,7 +113,7 @@ sudo reptyr -T 98765
 
 Once you have [[#set up iTerm shell integration]] below, you can use features like command and output history immediately. If you want the integration with ssh,  like right-click to download files and drag and drop to upload, then:
 
-```
+```zsh
 #### Set this up on other servers you commonly ssh to
 
 curl -L https://iterm2.com/shell_integration/${SHELL:5} \
@@ -124,7 +124,7 @@ echo "source ~/.iterm2_shell_integration.${SHELL:5}" | cat >> ~/.profile
 ```
 
 
-```
+```zsh
 #### set up iTerm2 shell integration remotely
 
 # use this if they are behind a firewall 
@@ -147,7 +147,7 @@ These setup steps have been moved out from [application_installation.md](applica
 
 This makes the [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec) accessible by macOS Zsh by creating the variables for use by code. It also moves the ZDOTDIR into a subfolder of .config, to reduce the number of .dotfiles in your home folder. The choice of config files for code chunks in this article is guided by https://unix.stackexchange.com/q/71253. For example to put PATH changes into .zshenv except when substituting built-in commands.
 
-```
+```zsh
 setopt interactive_comments
 
 #### Set ZDG variables for use during this install
@@ -205,7 +205,7 @@ See also other ideas towards a dotless home:
 
 ### Zsh basics
 
-```
+```zsh
 setopt interactive_comments
 
 #### Install the latest version of the shell
@@ -225,7 +225,7 @@ brew install zsh
 
 You should also install the new terminal emulator - configuration coming later.
 
-```
+```zsh
 # install the terminal emulator
 brew install iterm2
 ```
@@ -240,7 +240,7 @@ e.g. ls instead of gls or find instead of gfind,
 to allow seemless switching between mac and linux hosts. 
 Also take the latest openssh so that you can generate ed25519 keys
 
-```
+```zsh
 setopt interactive_comments
 
 brew install coreutils findutils gnu-sed openssh
@@ -292,7 +292,7 @@ This is no longer relevant as brew openssh now goes into /opt/homebrew/bin
 
 And this was perhaps too clunky to bother
 
-```
+```zsh
 # if needed in .zshrc ?
 #SSH_CONFIG="-F \${XDG_CONFIG_HOME}/ssh/config"
 # credit https://superuser.com/a/874924
@@ -329,7 +329,7 @@ And this was perhaps too clunky to bother
 
 You can integrate your shell (e.g. zsh) with the iTerm app for a series of features like command and output history, and other that integrate with ssh 
 
-```
+```zsh
 setopt interactive_comments
 
 #### set up iTerm shell integration
@@ -356,7 +356,7 @@ For usage see [[#iTerm shell integration]] above.
 
 ### install OhMyZsh
 
-```
+```zsh
 setopt interactive_comments
 
 #### check the current version and that its default shell
@@ -379,7 +379,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 ```
 
 
-```
+```zsh
 #### install theme
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM}/themes/powerlevel10k
 
@@ -444,7 +444,7 @@ NB: If you use lots of plugins that slow the terminal startup, you can use [10k 
 
 ### Shell personalisation
 
-```
+```zsh
 #### ^L to clear screen also clears scroll-back buffer
 
 cat >> ${ZDOTDIR}/.zshrc <<EndOfConfigZshRC
