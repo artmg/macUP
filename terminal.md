@@ -109,60 +109,43 @@ sudo reptyr -T 98765
 
 ```
 
+### iTerm shell integration
+
+Once you have [[#set up iTerm shell integration]] below, you can use features like command and output history immediately. If you want the integration with ssh,  like right-click to download files and drag and drop to upload, then:
+
+```
+#### Set this up on other servers you commonly ssh to
+
+curl -L https://iterm2.com/shell_integration/${SHELL:5} \
+-o ~/.iterm2_shell_integration.${SHELL:5}
+source ~/.iterm2_shell_integration.${SHELL:5} 
+echo "source ~/.iterm2_shell_integration.${SHELL:5}" | cat >> ~/.profile
+# not using .bash_profile as that prevents .profile from being run
+```
+
+
+```
+#### set up iTerm2 shell integration remotely
+
+# use this if they are behind a firewall 
+# or simply because its quick to set up multiple servers
+
+REMOTE_SERVER=user@myserver
+curl -L https://iterm2.com/shell_integration/bash | ssh ${REMOTE_SERVER} 'cat > ~/.iterm2_shell_integration.bash'
+echo "source ~/.iterm2_shell_integration.bash" | ssh ${REMOTE_SERVER} 'cat >> ~/.profile'
+# not using .bash_profile as that prevents .profile from being run
+```
+
+When you log onto a server with Shell Integration active, the prompt will have a small light-blue triangle at the start. 
+
+
 ## Installing and Configuring your Terminal
 
 These setup steps have been moved out from [application_installation.md](application_installation.md)
 
-If you haven't already you might need to install...
-
-```
-# the terminal emulator
-brew install --cask iterm2
-# unix-like commands for familiar syntax 
-brew install coreutils findutils gnu-sed
-```
-
-
-### Terminal
-
-* iTerm2
-	* Launch App / Right click in Dock icon / Options / Keep in Dock
-	* ⌘ ,  for Preferences
-	    * Keys / Hotkey / Create dedicated
-	        * **double-tap Control**
-        * Profile / Hotkey
-            * Window / Keep background colours opaque
-	    * Profile / Basic / Badge
-	        * `  \(session.username)@\(session.hostname)  `
-    * Relaunch
-    * SysPrefsPriv / Accesibility / Allow iTerm
-    * 
-
-
-### Zsh basics
-
-```
-setopt interactive_comments
-
-### Install the latest version of the shell
-
-# see current version
-zsh --version
-
-# compare with the latest on brew
-brew info zsh
-# more detail on comparing at https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/
-
-# install the latest
-brew install zsh
-# note the caveats on ncurses if that is an important library for your work 
-```
-
-restart the terminal to use the new version
-
 ### XDG Base directory structure
 
-This makes the [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec) accessible by macOS Zsh by creating the variables for use by code
+This makes the [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec) accessible by macOS Zsh by creating the variables for use by code. It also moves the ZDOTDIR into a subfolder of .config, to reduce the number of .dotfiles in your home folder. The choice of config files for code chunks in this article is guided by https://unix.stackexchange.com/q/71253. For example to put PATH changes into .zshenv except when substituting built-in commands.
 
 ```
 setopt interactive_comments
@@ -204,18 +187,14 @@ export XDG_DATA_HOME="\${XDG_DATA_HOME:-\$HOME/.local/share}"
 export PEP_SCRIPT_USER="\${PEP_SCRIPT_USER:-\$HOME/.local/bin}"
 
 EndOfConfigZshEnv
-
-# if needed in .zshrc ?
-#SSH_CONFIG="-F \${XDG_CONFIG_HOME}/ssh/config"
-# credit https://superuser.com/a/874924
-# but this would also need the alias
-# so you may as well put it all into the alias
-# but you still need to manually specify the path to key files in config
 ```
+
 
 **Make sure to close** the terminal so these take effect next time you reopen it. 
 
-see also other ideas towards a dotless home:
+##### .dot-less home
+
+See also other ideas towards a dotless home:
 
 * ArchWiki's useful explanation of XDG Base Dirs https://wiki.archlinux.org/index.php/XDG_Base_Directory
 * PEP 370 that proposes other .local locations https://www.python.org/dev/peps/pep-0370/
@@ -224,45 +203,156 @@ see also other ideas towards a dotless home:
 * macOS default folders https://developer.apple.com/library/content/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html#//apple_ref/doc/uid/TP40010672-CH2-SW1
 * 
 
-### iTerm shell integration
-
-You can integrate your shell (e.g. zsh) with the iTerm app for a series of features like command and output history, and other that integrate with ssh like right-click to download files and drag and drop to upload, 
+### Zsh basics
 
 ```
 setopt interactive_comments
-# credit https://www.iterm2.com/documentation-shell-integration.html
 
-#### Set this up on your local shell
+#### Install the latest version of the shell
+
+# see current version
+zsh --version
+
+# compare with the latest on brew
+brew info zsh
+# more detail on comparing at https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/
+
+# install the latest
+brew install zsh
+# note the caveats on ncurses if that is an important library for your work
+
+```
+
+You should also install the new terminal emulator - configuration coming later.
+
+```
+# install the terminal emulator
+brew install iterm2
+```
+
+Close the old terminal and open new new terminal emulator from launchpad. It will also start using the new zsh version.
+
+### Gnu and other utilities
+
+This will use brew to install the coreutils and findutils, and allow
+you to use them instead of macOS / FreeBSD equivalents, 
+e.g. ls instead of gls or find instead of gfind, 
+to allow seemless switching between mac and linux hosts. 
+Also take the latest openssh so that you can generate ed25519 keys
+
+```
+setopt interactive_comments
+
+brew install coreutils findutils gnu-sed openssh
+
+cat >> ${ZDOTDIR}/.zshrc <<EndOfConfigZshRC
+
+### Override built-in utilities
+
+# These path changes go in ZshRc not ZshEnv because 
+# you only want to override in interactive shell, 
+# not for instance when you make
+# 
+# This is why we prepend instead of appending (path+=)
+
+# prefer GNU utilities over FreeBSD variety that come with macOS
+# 
+path=('/usr/local/opt/coreutils/libexec/gnubin' \$path)
+path=('/usr/local/opt/findutils/libexec/gnubin' \$path)
+path=('/usr/local/opt/gnu-sed/libexec/gnubin' \$path)
+
+# Ensure any commands installed by brew work, 
+# including brew itself, and the new OpenSsh version
+# 
+path=('/opt/homebrew/bin' \$path)
+
+# and brew installed python
+# 
+path=('/opt/homebrew/opt/python/libexec/bin' \$path)
+# credit https://stackoverflow.com/a/48101303
+
+##### source brew (and brew installed) completions in zsh
+# MUST go BEFORE sourcing oh-my-Zsh
+# credit https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
+# but also AFTER adding brew to path so must stay in ZshRc
+# 
+FPATH="\$(brew --prefix)/share/zsh/site-functions:\${FPATH}"
+#fpath+=($(brew --prefix)/share/zsh/site-functions)
+
+
+EndOfConfigZshRC
+
+```
+
+#### historical ssh config and notes
+
+This is no longer relevant as brew openssh now goes into /opt/homebrew/bin
+
+    If you find that putting /usr/local/bin in front causes any other contentions, then you may need another hack to put the openssh executables ssh* in front. You can test ssh utility versions with `ssh -V`.
+
+And this was perhaps too clunky to bother
+
+```
+# if needed in .zshrc ?
+#SSH_CONFIG="-F \${XDG_CONFIG_HOME}/ssh/config"
+# credit https://superuser.com/a/874924
+# but this would also need the alias
+# so you may as well put it all into the alias
+# but you still need to manually specify the path to key files in config
+```
+
+
+### Terminal settings
+
+* iTerm2
+	* Launch App / Right click in Dock icon / Options / Keep in Dock
+	* ⌘ ,  for Preferences
+		* Keys / Hotkey / Create dedicated
+		* **double-tap Control**
+	* Profile / Hotkey
+		* Window / Keep background colours opaque
+	* Profile / Default / General / Basics / Badge
+		* `  \(session.username)@\(session.hostname)  `
+	* Profile / Default / Keys / Mappings / Add:
+		* ⌘←   `Send Escape Sequence`   OH
+		* ⌘→   `Send Escape Sequence`   OF
+		* ⌥←   `Send Escape Sequence`   b
+		* ⌥→   `Send Escape Sequence`   f
+			* credit https://sourabhbajaj.com/mac-setup/iTerm/
+    * Relaunch
+	    * check for updates automatically?
+		    * don't check
+    * SysPrefsPriv / Accessibility / Allow iTerm
+    * 
+
+### set up iTerm shell integration
+
+You can integrate your shell (e.g. zsh) with the iTerm app for a series of features like command and output history, and other that integrate with ssh 
+
+```
+setopt interactive_comments
+
+#### set up iTerm shell integration
+# 
+# credit https://www.iterm2.com/documentation-shell-integration.html
 
 mkdir -p ${PEP_SCRIPT_USER}/iterm2
 curl -L https://iterm2.com/shell_integration/${SHELL:5} \
 -o ${PEP_SCRIPT_USER}/iterm2/iterm2_shell_integration.${SHELL:5}
 source ${PEP_SCRIPT_USER}/iterm2/iterm2_shell_integration.${SHELL:5}
-echo "source ${PEP_SCRIPT_USER}/iterm2/iterm2_shell_integration.${SHELL:5}" | cat >> $ZDOTDIR/.zshrc
 
+cat >> ${ZDOTDIR}/.zshrc <<EndOfConfigZshRC
 
+#### set up iTerm shell integration
+# 
+# credit https://www.iterm2.com/documentation-shell-integration.html
+# 
+source \${PEP_SCRIPT_USER}/iterm2/iterm2_shell_integration.\${SHELL:5}
 
-#### Set this up on other servers you commonly ssh to
-
-curl -L https://iterm2.com/shell_integration/${SHELL:5} \
--o ~/.iterm2_shell_integration.${SHELL:5}
-source ~/.iterm2_shell_integration.${SHELL:5} 
-echo "source ~/.iterm2_shell_integration.${SHELL:5}" | cat >> ~/.profile
-# not using .bash_profile as that prevents .profile from being run
-
-
-#### set up iTerm2 shell integration remotely
-
-# use this if they are behind a firewall 
-# or simply because its quick to set up multiple servers
-
-REMOTE_SERVER=user@myserver
-curl -L https://iterm2.com/shell_integration/bash | ssh ${REMOTE_SERVER} 'cat > ~/.iterm2_shell_integration.bash'
-echo "source ~/.iterm2_shell_integration.bash" | ssh ${REMOTE_SERVER} 'cat >> ~/.profile'
-# not using .bash_profile as that prevents .profile from being run
+EndOfConfigZshRC
 ```
 
-When you log onto a server with Shell Integration active, the prompt will have a small light-blue triangle at the start. 
+For usage see [[#iTerm shell integration]] above.
 
 ### install OhMyZsh
 
@@ -286,15 +376,19 @@ export KEEP_ZSHRC=yes
 #### install OMZ
 # credit https://github.com/ohmyzsh/ohmyzsh/#via-curl
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
 
+
+```
 #### install theme
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM}/themes/powerlevel10k
 
 
 #### customise Terminal startup
+
 cat >> ${ZDOTDIR}/.zshrc <<EndOfConfigZshRC
 
-##### ZSHRC entries for OhMyZsh
+##### ZshRc entries for OhMyZsh
 # if you want to look at the latest version of the zshrc template 
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/templates/zshrc.zsh-template
 
@@ -320,17 +414,13 @@ source \$ZSH/oh-my-zsh.sh
 # You are encouraged to put your custom aliases into the ZSH_CUSTOM folder
 
 
-
 ##### Other terminal personalisation
 
 # allow the bash-like hash comments on the prompt
 setopt interactivecomments
 
-# add the iTerm shell integration you just downloaded
-source \${PEP_SCRIPT_USER}/iterm2/iterm2_shell_integration.zsh
-
 # don't page if less than one screen, e.g. for commands like git branch
-export LESS="$LESS --no-init --quit-if-one-screen"
+export LESS="\$LESS --no-init --quit-if-one-screen"
 # credit https://stackoverflow.com/q/48341920#comment92614882_48370253
 
 
@@ -350,7 +440,7 @@ EndOfConfigZshRC
 * OMZ will automatically check fortnightly for updates
 	* to upgrade manually for the latest code use `omz update`
 
-
+NB: If you use lots of plugins that slow the terminal startup, you can use [10k Instant Prompt](https://github.com/romkatv/powerlevel10k#how-do-i-configure-instant-prompt) to stop the wait.
 
 ### Shell personalisation
 
@@ -388,25 +478,4 @@ bindkey '^L' clear-scrollback-buffer
 EndOfConfigZle
 
 ```
-
-### Gnu Utils
-
-The coreutils and findutils have been installed by brew, 
-but you can use them instead of macOS / FreeBSD equivalents, 
-e.g. ls instead of gls or find instead of gfind, 
-to allow seemless switching between mac and linux hosts. 
-Also take the latest openssh so that you can generate ed25519 keys
-
-```
-brew install coreutils findutils gnu-sed openssh
-
-cat >> ${ZDOTDIR}/.zshrc <<EndOfConfigZshRC
-
-# prefer GNU utilities over FreeBSD variety that come with macOS
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/findutils/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/bin:\$PATH"
-
-EndOfConfigZshRC
-```
-
-If you find that putting /usr/local/bin in front causes any other contentions, then you may need another hack to put the openssh executables ssh* in front. You can test ssh utility versions with `ssh -V`.
 
