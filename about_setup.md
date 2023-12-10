@@ -19,7 +19,7 @@ which also provides an overview of the steps involved, please see [README.md](ht
 
 # Setup
 
-This presumes that you will not be using any macOS install-time technique to bring forward your old data, apps and settings, such as recovering them from Time Machine. This presumtion is based on the idea that you want a fresh start on the new (-ly rebuilt) machine. 
+This presumes that you will NOT be using any macOS install-time technique to bring forward your old data, apps and settings, such as recovering them from Time Machine. This presumption is based on the idea that you want a mostly fresh start on the new (-ly rebuilt) machine. 
 
 ## full backup
 
@@ -46,17 +46,47 @@ If you have a Private Configuration Note for your own data locations, check this
 * Accounts used on apps and data sync
 * Repositories cloned
 
-Consider copying config files from well-known locations:
+Consider copying config files from well-known locations – you might not want to recover all of these, but you want to avoid loosing the useful detail in case:
 
-* Lib / Prefs
-* .config / .local / .*
-* ~/Library/Services
+* should we copy the generic User Preferences folder?
+	* Lib / Prefs
+	* there are Megabytes of stuff in there, most of no value
+* take a copy of some dotfolders (~/.*)
+* e.g. SAVE
+	* local config anydesk gitconfig
+	* * .config / .local / .*
+	* .ssh
+	* * ~/Library/Services
 	* custom automations
+* e.g. DON'T save
+	* Trash cache dropbox npm
 
-```
+```zsh
 # check size vs value of home dotfolders you might want to copy
 du -hd 0 ~/.*
 ```
+
+##### Dot Config Backup
+
+Here is an example of typical config locations identified using steps above, to capture your config states for later reinstallation or review...
+
+```zsh
+# escaping the ! works in bash interactive shell, 
+# but from zsh you **MUST** start a bash shell
+cd $HOME
+7z a -t7z "DotConfigBackup.Partial.$USER-$(hostname -s).`date +%y%m%d`.7z" \
+  .zshenv .gitconfig .anydesk/*.conf \
+  .ssh -x\!.ssh/*/ \
+  .config/configstore .config/git \
+  .config/zsh/ -xr0\!.zcompdump* \
+  Library/Services \
+  Library/Application\ Support/obsidian/obsidian.json 
+
+# note the syntax to take .ssh files but no subfolders!
+# Library/Preferences would be overkill for most cases
+```
+
+For git repository config backup see https://github.com/artmg/lubuild/blob/master/help/use/git-source-control.md#config-backup
 
 ## Other Procedures
 
