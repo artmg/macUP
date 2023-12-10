@@ -1,4 +1,4 @@
-# macOS application installation
+# macOS application installation
 
 This installs applications and adds a very basic config. 
 It also outlines a number of optional packages and some maintenance. 
@@ -45,6 +45,8 @@ with other Apple system components when you check System Preferences / Updates l
 
 ## Basic Apps
 
+NB: Before you install these apps, make sure you have [cleaned up your launchpad](https://github.com/artmg/macUP/blob/main/personalisation.md#clean-up-base-apps) first, else it's a pain to drag all the icons around after.
+
 ```
 # create a bundle of apps in a Brewfile
 cat >> Brewfile <<EndOfBrewfile
@@ -82,7 +84,7 @@ cask 'libreoffice'      # open source and compatible office applications
 cask 'macdown'          # markdown editor with preview
 cask 'veracrypt'        # transparent volume encryption, depends macfuse
 cask 'meld'             # diff or merge files and folders
-cask 'qownnotes'        # markdown notes editor / manager / syncer
+cask 'obsidian'         # markdown notes front-end
 cask 'skype'            # common conferencing service
 cask 'spotify'          # music streaming service
 cask 'stats'            # menu bar system monitor
@@ -157,7 +159,6 @@ brew install --cask microsoft-teams       # video meeting client
 brew install --cask monitorcontrol        # adjust brightness volume etc via HDMI DCC
 brew install --cask musicbrainz-picard    # music metadata tagger like mp3tag
 brew install        neovim                # vim-like editor
-brew install --cask obsidian              # markdown notes front-end
 brew install --cask openlp                # projection manager, e.g. song lyrics for worship
 brew install --cask openvpn-connect       # basic client for OpenVPN protocol
 brew install        p7zip                 # command line compression –    7z --help
@@ -173,6 +174,7 @@ brew install https://raw.githubusercontent.com/turforlag/homebrew-cervezas/maste
 # https://gist.github.com/jvenator/9672772a631c117da151#gistcomment-3224117
 
 brew install --cask qlmarkdown            # Quick Look renderer for markdown, enables indexing of MDs
+brew install --cask qownnotes.            # markdown notes editor / manager / syncer
 brew install        qrencode              # generate QR code images
 brew install --cask sequential            # folder image browser - very out of date, but works - alternatives depend on widget system e.g. qView or gThumb
 brew install --cask skype-for-business    # if required for client

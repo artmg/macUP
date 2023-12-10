@@ -67,6 +67,9 @@ If you really want to make a shortcut directly into Activity Monitor then see ht
 * ⌘ ⇧ C	Computer folder
 * ⌘ ⇧ H	Home folder
 
+* ⌘ ⇧ G	Go to Folder
+	* this will also work when you are in an app that uses the File Open dialog
+	* It will allow you to paste in a path, from the clipboard, to go straight to that location
 
 ## touchpad
 

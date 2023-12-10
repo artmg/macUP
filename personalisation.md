@@ -74,15 +74,20 @@ defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
 
 ```
 
-### Clean up base apps:
+### Clean up base apps
 
 * On Dock / right-click Options / Remove from Dock
 	* Mail, FaceTime, Messages, Maps, Photos, Contacts, Calendar, Reminders, Music, Podcasts, TV, News, 
-	* ones marked ^ can go because their also pinned to Dock
 * Move into Productivity folder
-	* Mail, Contacts, Calendar, Reminders, FaceTime, Messages, Maps, Find My, PhotoBooth, Photos, Music, Podcasts,  Safari ^ , Finder ^ , TV, VoiceMemos, News, Stock, Books, Dictionary, Home, Siri, Mission Control, Quick Time Player, TextEdit, Chess, Stickies, 
-* Open Launcher folder Other, rename to Technical and move in: 
-	* AppStore, System Prefs ^ , Time Machine, Font Book, Image Capture, Automator, 
+	* if folder not created yet drag one app on top of other
+	* Mail, Contacts, Calendar, Reminders, Notes, FaceTime, Messages, Maps, Find My, PhotoBooth, Photos, Music, Podcasts,  Safari ^ , Finder ^ , TV, VoiceMemos, Weather, News, Stock, Books, Dictionary, Freeform, Home, Clock, Siri, 
+	* ones marked ^ can go because their also pinned to Dock
+	* If still in there:
+		* Mission Control, Quick Time Player, TextEdit, Chess, Stickies, 
+* Open Launchpad folder Other, rename to Technical and move in: 
+	* AppStore, System Prefs ^ , 
+	* If still in there:
+		* Time Machine, Font Book, Image Capture, Automator, 
 
 ### Other general layout preferences
 

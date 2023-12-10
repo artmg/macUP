@@ -5,7 +5,7 @@ device set up
 in an efficient, uniform and comprehensive way. 
 
 Although it is based on a personal preference for certain aspects of setup, it has gathered a series of tips and techniques from other sources, and 
-is publicly resharing them with the presumtion that there's no harm.
+is publicly re-sharing them with the presumption that there's no harm.
 
 It does however presume the harm in sharing details about 
 accounts used, data locations and highly personal application configuration – 
