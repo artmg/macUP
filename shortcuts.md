@@ -61,6 +61,7 @@ If you really want to make a shortcut directly into Activity Monitor then see ht
 
 ### in Finder
 
+* Enter	Rename the selected file
 * ⌘ ⌥ C	Copy file path as UNC
 * ⌘ ⇧ . 	Show / Hide hidden items
 * 
