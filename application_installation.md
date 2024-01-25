@@ -293,8 +293,19 @@ This will create a `Brewfile` in the current folder listing the apps installed
 
 #### Filesystem locations
 
+On Intel Silicon the locations were under `/usr/local/`
+
 * /usr/local/Cellar
 * /usr/local/Caskroom
+
+but now these have moved on Apple Silicon to `/opt/homebrew`. 
+To be safe, refer to any brew location using, e.g. 
+
+```
+brew --prefix
+ls -la $(brew --prefix)
+```
+
 
 ### DEPRECATED
 

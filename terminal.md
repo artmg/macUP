@@ -255,26 +255,28 @@ cat >> ${ZDOTDIR}/.zshrc <<EndOfConfigZshRC
 # 
 # This is why we prepend instead of appending (path+=)
 
-# prefer GNU utilities over FreeBSD variety that come with macOS
-# 
-path=('/usr/local/opt/coreutils/libexec/gnubin' \$path)
-path=('/usr/local/opt/findutils/libexec/gnubin' \$path)
-path=('/usr/local/opt/gnu-sed/libexec/gnubin' \$path)
-
 # Ensure any commands installed by brew work, 
 # including brew itself, and the new OpenSsh version
+# These need to be hard coded so are not escaped
 # 
-path=('/opt/homebrew/bin' \$path)
+path=('$(brew --prefix)/bin' \$path)
+
+# prefer GNU utilities over FreeBSD variety that come with macOS
+# 
+path=('$(brew --prefix)/opt/coreutils/libexec/gnubin' \$path)
+path=('$(brew --prefix)/opt/findutils/libexec/gnubin' \$path)
+path=('$(brew --prefix)/opt/gnu-sed/libexec/gnubin' \$path)
 
 # and brew installed python
 # 
-path=('/opt/homebrew/opt/python/libexec/bin' \$path)
+path=('$(brew --prefix)/opt/python/libexec/bin' \$path)
 # credit https://stackoverflow.com/a/48101303
 
 ##### source brew (and brew installed) completions in zsh
 # MUST go BEFORE sourcing oh-my-Zsh
 # credit https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
 # but also AFTER adding brew to path so must stay in ZshRc
+# However this _can_ and should be escaped
 # 
 FPATH="\$(brew --prefix)/share/zsh/site-functions:\${FPATH}"
 #fpath+=($(brew --prefix)/share/zsh/site-functions)
