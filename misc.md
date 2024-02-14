@@ -153,6 +153,8 @@ $ rm -v .parentlock
 
 ## iCloud 
 
+Note that this article is primarily written from a viewpoint that uses a Mac as the only Apple device, and therefore eschews the majority of the 'Apple-for-everything' ecosystem. If you have the whole range of Apple products, tied into a single AppleID, some of this might seem pointless to your approach to computing. 
+
 ### Key transaction settings
 
 There are some things where you're very limited as to how you control payments and subscription, almost obliged to dedicate a macOS or iOS device to an AppleID in order to do these...
@@ -167,7 +169,8 @@ There are some things where you're very limited as to how you control payments a
 		* I couldn't manage via tv.apple.com in browser
 * Other things you can't change without a payment method set up
 	* https://support.apple.com/en-gb/HT203905
-* 
+
+See the section [Cached Keychain](#cached-keychain) (consider renaming) below to 'home' multiple AppleIDs on a single device.
 
 ### Drive folder choices
 
@@ -217,9 +220,64 @@ Individual iCloud items can be shared from iOS via AirDrop. For instance if you 
 
 #### Cached keychain
 
+(consider renaming section) 
+
 As a simpler workaround, consider adding a new macOS user, and signing into AppleID. That way you get to choose which iCloud feature data is cached into the local folders, including of course the Keychain. The keychain _should_ be encrypted using the principle device passcode for that account, but do consider ensuring the using FileVault full disk encryption on the drive holding the cache. 
 
 Holding a device signed into that account also confers the other privileges, such as allowing other sign-ins to be trusted, so protect the device and local account well. 
+
+For more keep reading.
+
+#### Create a standard user
+
+* System Settings / Users & Groups
+* Add User (then you may need to authenticate yourself)
+* leave it set as standard user
+* set the account name and password
+* Log on as the user
+* set Accessibility and Privacy as you prefer
+* do NOT use AppleID just yet, Skip For Now
+* Skip through most of the rest
+* then set just the basic services below.
+
+##### AppleID basics only
+
+If you only want to use your AppleID to enable basic services like App Store, manage your iCloud subscription, or Find My Mac:
+
+* System Settings / Sign in with your AppleID / iCloud / Start using iCloud
+	* enter your AppleID and password
+	* use a Trusted Device to get your user verification code, if requested
+	* Accept the Terms of Service
+	* you will probably have to enter your local user password too
+		* so that it may also unlock your iCloud keychains
+		* If you have changed your local password 
+			* you may need to enter the old password, 
+			* as it unlocked your iCloud keychain
+* You will want to be quite quick to disable the rest
+	* before they all sync down to your device
+* System Settings / AppleID / iCloud / Apps using iCloud
+	* UNcheck ALL iCloud options (including ‘Show More Apps’) except:
+	* Keychain
+	* (_optionally_) FindMy
+		* you will also need to enable Location Services if you want to locate as well as be able to wipe
+			* Enable Location Services
+				* you may leave most apps turned off
+				* after System Services, click details
+					* UNcheck all except Find My Mac and Networking & Wireless
+* unless there are other specific services you wish to retain on this device
+
+
+Review the devices that are now tied to this account, and take especial note of those that are Apple devices. Check the details against this newly set up device, to ensure it mentions `This device is trusted and can receive AppleID verification codes`.
+
+You may, if you wish, also set up Safari on this user account to have access to iCloud via the web, but you can do that anytime you need it.
+
+
+##### Trusted Devices
+
+When signing in with an AppleID account that has two-factor authentication (2FA, MFA) enabled, you will also need a six-digit verification code. As explained in [https://support.apple.com/en-ca/HT204974](https://support.apple.com/en-ca/HT204974) the limitation is that Trusted Devices can only be items running Apple 'OS' variants, like Macs, iPads etc. 
+
+This is another reason why you might need to keep extra local users authenticated with any 'legacy' AppleIDs that still hold some data or services. As you decommission legacy devices, ensure that you are tracking which are still Trusted Devices for the relevant six-digit user verification codes.
+
 
 ## Images
 
