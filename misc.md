@@ -439,6 +439,10 @@ For the commands see:
 
 ## Development tips
 
+## GTK porting
+
+You may have a favourite Linux application that uses the GTK widget framework for its graphical interface (GUI). If so then the [GTK Quartz integration](https://www.gtk.org/docs/installations/macos) will make it relatively straight-forward to make an app work with the [Quartz graphical layer](https://en.wikipedia.org/wiki/Quartz_(graphics_layer)) in macOS.
+
 ### Using Valgrind to diagnose memory issues
 
 * seg fault 11
