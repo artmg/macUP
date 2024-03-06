@@ -391,3 +391,63 @@ many of my chosen apps are not amongst the packages available.
 Maybe I'll just stick to 'imperfect' homebrew - it works for what I need, 
 and has a pretty extensive library. 
 
+# Application specifics
+
+If this section grows, consider moving this out to a separate 
+application_specifics.md article. 
+
+## Dropbox client
+
+The the official Dropbox macOS client, 
+whether you install in manually by download 
+or view the homebrew package, 
+has historically requested privilege escalations 
+that not everyone agrees with. 
+Some users are concerned that asking for too high permissions 
+or opening firewall access could be concerns for 
+security and privacy. 
+
+You can find some forum articles on Dropbox for macOS's 
+desire for excessive permissions like [Allow incoming connections in Firewall Options](https://www.dropboxforum.com/t5/Apps-and-Installations/MacOS-X-Security-Is-it-normal-to-allow-Dropbox-app-quot-to/td-p/60167) and for [root password](https://www.dropboxforum.com/t5/Create-upload-and-share/Why-does-Dropbox-ask-for-your-computer-password/td-p/188955/page/2)
+
+Some suggested ways to avoid these are
+* do not allow Accessibility unless you need the 'badges' notifications
+* When you are prompted for your Admin password just CANCEL
+* in System Settings / Network / Firewall / Options
+	* change Dropbox to not accept incoming connections
+
+Doing these might disable features that some users in some cases 
+might find desirable, but until you need them you can 
+leave the permissions inactive for safety.
+
+### Dropbox password dialog
+
+(_this section might want integrating into the section above_)
+
+After installing / upgrading dropbox using the brew formula, 
+when you restart your Mac you may find yourself presented with an 
+odd 'Dropbox' dialog box prompting you to
+
+`Please enter your computer password for Dropbox to work properly`
+and enter you username and password.
+
+This is a component of the application which is trying to elevate 
+privilege to install extra components in a rather non-transparent way. 
+
+There is a slightly ranty reveal of what is going on at 
+https://medium.com/@dmxt/dropbox-is-a-backdoor-for-your-macintosh-2fcdf3b211e6 
+but considering the Dropbox official forums gloss over the issue, 
+merely telling you to do a full manual re-install, or mentioning 
+Accessibility options, you might understand the frustration.
+The article https://groups.google.com/g/munki-dev/c/ooE-f2JTXxM 
+goes into some explanation of steps to work around this, pointing to 
+https://github.com/Ginja/Admin_Scripts/blob/master/dropbox_helper.rb
+as a way to disable this behaviour.
+
+However the offending files may have changed.
+Watch this space. 
+
+```
+rm $HOME/Library/LaunchAgents/com.dropbox.DropboxMacUpdate.agent.plist
+```
+
