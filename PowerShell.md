@@ -211,6 +211,31 @@ Get-PnPTenantSite -Identity $SharePointUrl -Connection $AdminConnection | Select
 
 Set-PnPTenantSite -Identity $SharePointUrl -Connection $AdminConnection -DefaultLinkToExistingAccess $true
 ```
+##### Troubleshooting
+
+Check the latest release at https://github.com/pnp/powershell/releases
+
+```powershell
+$PSVersionTable
+brew info powershell
+$env:PSModulePath
+
+Get-InstalledModule
+
+Uninstall-Module -Name "PnP.PowerShell" -AllVersions -Force
+Uninstall-Module -Name "SharePointPnPPowerShellOnline" -AllVersions -Force
+
+# Make sure they were removed
+Get-InstalledModule
+```
+
+###### Tracing
+
+```powershell
+Set-PnPTraceLog -On -LogFile traceoutput.txt -Level Debug
+```
+
+
 #### Exchange Online
 
 * Run PowerShell as superuser: `sudo pwsh`
