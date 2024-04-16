@@ -291,6 +291,16 @@ brew bundle dump
 
 This will create a `Brewfile` in the current folder listing the apps installed
 
+#### Check dependencies
+
+```zsh
+# show the installed packages in a dependency tree
+brew deps --tree --installed
+
+# check for ANY package that uses this one
+brew uses --eval-all mypackage
+
+```
 #### Filesystem locations
 
 On Intel Silicon the locations were under `/usr/local/`
