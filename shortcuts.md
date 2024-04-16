@@ -26,14 +26,14 @@ Legend:
 	⇧ = Shift
 
 
-Feature | Shortcut
---- | ---
-Symbols | ⌃ ⌘ space	(Settings / add Technical Symbols)
-Lock Screen | ⌃ ⌘ Q
-Spotlight | ⌘ space 
-Filer search | ⌥ ⌘ space
-Screenshot | ⇧ ⌘ 3
-Crop shot | ⇧ ⌘ 4
+| Feature      | Shortcut                                     |
+| ------------ | -------------------------------------------- |
+| Symbols      | ⌃ ⌘ space	(Settings / add Technical Symbols) |
+| Lock Screen  | ⌃ ⌘ Q                                        |
+| Spotlight    | ⌘ space                                      |
+| Filer search | ⌥ ⌘ space                                    |
+| Screenshot   | ⇧ ⌘ 3                                        |
+| Crop shot    | ⇧ ⌘ 4                                        |
 
 See also [Mac startup key combinations](https://support.apple.com/en-gb/HT201255)
 
@@ -46,15 +46,15 @@ Multiple select | ⌘ click
 
 ### App Windows
 
-Shortcut | Feature
---- | ---
-⌘ ⇥  | Switch apps
-⌃ ← or → | Switch ‘desktops’ (maximised apps)
-⌘ ` 	 | Switch instances of app (only if neither minimised nor maximised)
-F11	 | Show Desktop (Exposé) 
-? | http://www.virtualbox.org/manual/ch08.html#vboxmanage-guestcontrol
-⌘  ⌥  ⎋  (Esc) | Force Quit Applications
-⌃ space | for Spotlight to search "Activity Monitor"
+| Shortcut       | Feature                                                            |
+| -------------- | ------------------------------------------------------------------ |
+| ⌘ ⇥            | Switch apps                                                        |
+| ⌃ ← or →       | Switch ‘desktops’ (maximised apps)                                 |
+| ⌘ `            | Switch instances of app (only if neither minimised nor maximised)  |
+| F11            | Show Desktop (Exposé)                                              |
+| ?              | http://www.virtualbox.org/manual/ch08.html#vboxmanage-guestcontrol |
+| ⌘  ⌥  ⎋  (Esc) | Force Quit Applications                                            |
+| ⌃ space        | for Spotlight to search "Activity Monitor"                         |
 
 If you really want to make a shortcut directly into Activity Monitor then see https://appleinsider.com/articles/18/03/14/how-to-create-keyboard-shortcuts-to-launch-apps-in-macos-using-automator
 
