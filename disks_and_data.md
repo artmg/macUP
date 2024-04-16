@@ -78,6 +78,20 @@ If you want to know what accessories have been plugged in via USB
 	* equivalent of the "System Information" UI app
 
 
+### User Directory utility
+
+If you need extra help to diagnose issues with permissions, it might help to know 'who' you have in the Users and Groups in your Mac. You can use the hidden Directory Utility to browse your machine's directory, but note that this is the 'who' kind of directory, not the 'folder' kind of directory. 
+
+You should, however, be wary - this is hidden because you could damage your system by changing the wrong settings! **Do not Authenticate**, until you are sure that you have rechecked that what you are doing is safe.
+
+* Finder / Go / Go to Folder ( ⇧ ⌘ G )
+* ` /System/Library/CoreServices/Applications `
+* Directory Utility
+* Directory Editor
+* you can now browse a much longer list of Users and Groups under /Local/Default
+
+See https://support.apple.com/en-gb/guide/directory-utility/diru8bdf8238/mac for more on this utility.
+
 ### Compression cabinets
 
 compressed files like .zip .7z 
