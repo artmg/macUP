@@ -321,36 +321,7 @@ The processes involved in the synchronisation are `cloudd` that directs `cloudph
 
 ## VirtualBox tips
 
-Fixed Disk size is supposed to improve performance - does SSD underneath change that?
-
-Check also Power Management settings - and what should they be in the guest?
-
-Do you want to set up Macos as a guest OS (e.g. for a development or build environment) - it's not supported by VirtualBox but it IS within the terms of your Apple software license. See https://forums.virtualbox.org/viewforum.php?f=22
-
-Troubleshooting hangs
-
-* Look in Activity Monitor to understand what is occurring
-* Check VBox.log file (Logs folder under where VM definition and vdi files are  
-* Some candidate settings - enable 2/3d video acceleration, modify or disable audio, 
-* 
-
-### Example issues from Vbox logs
-
-```
-OpenGL Warning: blit from texture to texture not implemented
-
-ERROR [COM]: aRC=E_ACCESSDENIED (0x80070005) aIID={872da645-4a9b-1727-bee2-5585105b9eed} 
-aComponent={ConsoleWrap} aText={The object is not ready}, preserve=false aResultDetail=0
-
-```
-
-
-```
-GUI: Passing request to close Runtime UI from machine-logic to UI session.
-ERROR [COM]: aRC=E_ACCESSDENIED (0x80070005) aIID={872da645-4a9b-1727-bee2-5585105b9eed} aComponent={ConsoleWrap} aText={The object is not ready}, preserve=false aResultDetail=0
-
-```
-
+moved OUT to [[virtualisation]]
 
 ## Protection
 

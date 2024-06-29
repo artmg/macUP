@@ -321,12 +321,15 @@ ls -la $(brew --prefix)
 
 ```
 # In future use Linux VMs to run these packages
-
 # Docker and Vagrant container platforms
 # They use a VirtualBox VM, so cut out the 'middleman' and spin up an Ubuntu VM
 
 #cask 'vagrant*'
 #brew 'docker*'
+
+# see article https://github.com/artmg/macUP/blob/main/virtualisation.md
+
+
 
 # The following are still only 32-bit packages
 # due to limitations in dependencies and 
