@@ -248,15 +248,18 @@ sudo launchctl stop com.apple.metadata.mds && sudo launchctl start com.apple.met
 
 If you are in Finder, in a filesystem that is excluded from indexing, then how do you quickly and easily perform a unix 'find' for a file from your location?
 
-Answer TBC here please :)
-
 ```
 # find in names
 find . -iname "*string*"
 
+# built-in find ignore errors
+sudo /usr/bin/find / -iname "*string*" 2>/dev/null
+
 # find in files
 grep -R 'string' .
 ```
+
+The second option reverts to using macOS version of find, even if gnu-utils version is on the path, running it as root and ignoring / not displaying or printing any error messages. This sidesteps errors like `find: failed to read file names from file system at or below ‘/’: No such file or directory` – for background see https://superuser.com/q/1679798
 
 ### Rebuild the index
 
