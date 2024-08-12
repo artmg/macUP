@@ -451,16 +451,17 @@ or look in the startup options inside the application's Preferences menu.
 
 ## Manipulating plist config files
 
-May apps' preferences can be found inthe plist files in 
-$HOME/Library/Preferences
+May apps' preferences can be found in the plist files in 
+`$HOME/Library/Preferences`, but not all of these plists are in XML format, some of them are binary plists (a hex editor shows the magic id `bplist00`).
 
 For the commands see:
 
-* to convert binary property lists into XML and back
+* using `plutil` to convert binary property lists into XML and back
 	* https://osxdaily.com/2016/03/10/convert-plist-file-xml-binary-mac-os-x-plutil/
 * more in depth manipulation 
 	* https://scriptingosx.com/2016/11/editing-property-lists/
-* 
+* you can also use `/usr/libexec/PListBuddy`
+* you could read binary plists in Visual Studio Code by using the extension `dnicolson.binary-plist`
 
 
 
