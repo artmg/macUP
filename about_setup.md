@@ -114,7 +114,23 @@ See help - https://support.apple.com/en-au/HT201065
 	* reclear NVRAM
 	* leave for them to do the install
 
+### Base install
 
+* Language
+* Country
+* Confirm languages - Continue
+* Accessibility or Not Now
+* Data & Privacy
+* Migration Assistant or Not Now
+* Sign in with Apple iCloud or Set up later / Skip
+* Terms / Agree
+* Create computer account
+* Enable location services (optional, or Don't Use)
+* Time Zone
+* Analytics and crash sharing (both optional)
+* Screen time or Set up later
+* Siri - enable or uncheck
+* Look - light, dark or auto
 
 # Configuration
 
