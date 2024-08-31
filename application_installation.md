@@ -200,7 +200,8 @@ For other old apps see Deprecated and No Longer Used sections below
 
 ### Other task app candidates
 
-Out to: ????
+* Development tools:
+	* [coding # Installing development tools](coding.md#Installing%20development%20tools)
 
 #### archive manager
 
