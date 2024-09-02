@@ -16,6 +16,98 @@ See also, in sister repositories:
 * Repository dedicated to solution tips for the R statistical language and its IDEs
 	* [https://gitlab.com/artmg/scienzaRt]
 
+## Installing development tools
+
+```
+brew install        node           # JavaScript runtime
+brew install --cask node           # JavaScript runtime
+brew install visual-studio-code    # (mostly-) popular multi-language IDE
+```
+
+
+
+
+## Node.js
+
+### Simple installation
+
+Node.js is a widely used platform, so check first in case you have it already.
+
+```
+node -v
+```
+
+If not, we recommend the ‘long term stable’ version that avoids excessive updates and issues, use your preferred package manager to install it, e.g. `choco install nodejs-lts` or e.g. `brew install node@22` (see other versions in https://nodejs.dev/en/about/releases/ and https://formulae.brew.sh/formula/node ) 
+
+### Managed versions
+
+You might have different apps that have very specific requirements for node versions. This is where the node version manager comes in. These instructions were created for zsh on macOS, but if you substitute `brew` with `choco install nvm` or `runtime` or `nvm-sh` then you can easily get them working on Windows or Linux too.
+
+```zsh
+brew install nvm
+
+# you may choose a different profile depending on your own set up
+cat >> ${ZDOTDIR:-~}/.zshrc <<EndOfConfigZshRC
+
+# Add nvm to your shell profile
+source $(brew --prefix nvm)/nvm.sh
+
+EndOfConfigZshRC
+```
+
+* restart your terminal to get use the new profile
+
+```zsh
+# Verify the NVM version
+nvm --version
+
+nvm install --lts
+
+nvm ls
+
+nvm use --lts
+```
+
+alternative configs
+
+```
+export NODE_VERSION=18
+nvm install ${NODE_VERSION}
+node -v
+
+# this might be redundant, but it won't hurt
+# assuming you don't need a different version as default for another toolset
+nvm alias default ${NODE_VERSION}
+```
+
+If you want to control where nvm stores everything, `$NVM_DIR` overrides the default `~/.nvm` – to remove nvm you can just delete the folder. 
+
+
+
+### Yarn package manager
+
+In the popular JavaScript runtime Node.js, Yarn is an alternative package manager to `npm`. Some people prefer it as it installs packages in parallel so should be faster. It is also used to build a package from your code base. 
+Note that `brew install yarn` will only install classic yarn v1.22.22, rather than modern yarn version 4+. Yet yarn is now delivered with node, so you can use
+
+```
+brew install node
+
+# make the yarn binary available
+corepack enable
+
+# upgrade to the new 'modern' version
+md yarntemp
+cd yarntemp
+yarn init -2
+
+# if you later want to upgrade to the latest version
+yarn set version stable
+yarn install
+
+# if your project needs you to revert to the classic version
+yarn set version classic
+```
+
 
 # misc development tips
 ## GTK porting
