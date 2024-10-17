@@ -53,7 +53,7 @@ Open source Podman has cross-platform support, and wide package-manager availabi
 
 ### Installing Podman on macos
 
-NB: running on a single machine, you should **deny** the firewall access to `podman-remote`. 
+NB: if you run your services purely on one single machine, you should **deny** the firewall access to `podman-remote`. 
 
 ```zsh
 brew install podman
@@ -89,6 +89,7 @@ podman run --rm -it --shm-size=2g -p 4444:4444 -p 5900:5900 -p 7900:7900 seleniu
 
 NB: If you have not already downloaded the image, podman will do this for you on the fly.
 
+By default, ports exposed by containers will only be accessible by other containers in the machine. The -p --ports option exposes these to the `localhost` so you can make connections from your pc.
 
 ```zsh
 # check
