@@ -16,7 +16,7 @@ UTM is a free and open source front-end for QEMU, although it also offers a paid
 
 UTM claims close to bare-metal performance for ARM guests on Apple Silicon, as QEMU can now use Apple's Virtualisation Framework as the hypervisor . Although Podman (below) earlier switched from QEMU to vfkit to improve [performance](https://news.ycombinator.com/item?id=33538397) and to avoid the cost of maintaining a [multi-million-line codebase]( [intro deck to vfkit](https://archive.fosdem.org/2023/schedule/event/govfkit/attachments/slides/5847/export/events/attachments/govfkit/slides/5847/fosdem2023_go_devroom_vfkit.pdf)), QEMU now with HVF support is a reasonably efficient solution for the end user. However, many of the using the Apple Virtualization backend means some UTM features are unavailable, like USB and Clipboard sharing, Dynamic display resolution and Save states.
 
-UTM also supports emulation, which you might find fine for lighter x64-86 linux distros. You might find that using  Windows x64-86 [developer Evaluation images](https://developer.microsoft.com/en-us/windows/downloads/virtual-machines/) under this emulation are far too sluggish. Microsoft have no plans to release developer ARM builds any time soon, but with a Windows 11 Pro license you can get Windows for ARM images that give great performance. Alternatively, unless you are on the Windows Insider Preview programme for corporates, you would have to trust [download method](https://docs.getutm.app/guides/windows/) whose source for obtaining the ISO does not look reliably legitimate.
+UTM also supports emulation, which you might find fine for lighter x64-86 linux distros. You might find that using  Windows x64-86 [developer Evaluation images](https://developer.microsoft.com/en-us/windows/downloads/virtual-machines/) under this emulation are far too sluggish. See below for using Windows on Apple Silicon.
 
 ```zsh
 brew install utm
@@ -110,6 +110,18 @@ Best practice development for macs is to compile a 'universal' (or fat) binary, 
 If you install an application that requires translation then [macOS will prompt](https://support.apple.com/en-gb/102527) the user to install Rosetta. Likewise some subsystems (like vfkit that podman uses below) will offer to install it if it might be considered beneficial. Alternatively it can be installed from the Terminal command line. It would appear there is no effective method to completely remove the software, short of reinstalling macOS, but it is unlikely to cause an impact when it does not need to translate applications. There are some [limitations to its abilities](https://apple.stackexchange.com/a/450602) and [some reports of apps that perform badly](https://www.reddit.com/r/MacOS/comments/sgc2vp/how_does_rosetta_2_impact_general_system/) so you might want to consider alternative workarounds for any given application requirement.
 
 An easy way for an application to [detect if it is being translated](https://stackoverflow.com/a/65347893) is `sysctl sysctl.proc_translated`. Under the covers Rosetta 2 is called AOH and you can [read a bit more](https://eclecticlight.co/2021/01/22/running-intel-code-on-your-m1-mac-rosetta-2-and-oah/) or see [some reverse-engineering](https://ffri.github.io/ProjectChampollion/part1/) if you really wish.
+
+## Windows on Apple Silicon
+
+As explained in UTM above, you can easily use Windows Intel images on older Intel Mac computers. If you have the newer Apple Silicon Mac models, you will need Windows Arm. Microsoft have no plans to release developer ARM builds any time soon, but you have some ways to obtain Arm images.
+
+MS allow the Windows 11 ESD files to be downloaded from directly inside commercial macOS virtualisation software like Parallels and VMware Fusion. Now that Broadcom has opened Fusion up to individuals for Personal Use, you can get this quickly and easily:
+
+```zsh
+brew install vmware-fusion
+```
+
+with a Windows 11 Pro license you can get Windows for ARM images that give great performance. Alternatively, unless you are on the Windows Insider Preview programme for corporates, you would have to trust [download method](https://docs.getutm.app/guides/windows/) whose source for obtaining the ISO does not look reliably legitimate.
 
 ## VirtualBox tips
 
