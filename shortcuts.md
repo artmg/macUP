@@ -3,6 +3,7 @@
 This is an annexe to the [macUP macOS setup process](https://github.com/artmg/macUP/) that offers: 
 
 * Keyboard combinations
+* recipe ideas for the macOS Shortcuts.app
 
 see also:
 
@@ -58,6 +59,10 @@ Multiple select | ⌘ click
 
 If you really want to make a shortcut directly into Activity Monitor then see https://appleinsider.com/articles/18/03/14/how-to-create-keyboard-shortcuts-to-launch-apps-in-macos-using-automator
 
+### in many apps
+
+* ⌘ , 		open current application's Preferences or Settings dialog
+
 
 ### in Finder
 
@@ -84,11 +89,11 @@ An easy way that usually works is to hold the key for a second and release it be
 
 Option Key gives the others:
 
-` grave
-e acute
-i  circumflex
-n tilde
-u umlaut
+* \` grave
+* e acute
+* i  circumflex
+* n tilde
+* u umlaut
 
 then type the next letter
 
@@ -124,4 +129,33 @@ Generally CTRL becomes ⌘
 * Autofill
 	* ⇧ fn ⌫  Shift Fn Backsp  remove hightlighted autofill entry
 * .
+
+## Using the macOS Shortcuts app
+
+### System Preferences
+
+on iOS devices there is a `prefs:root=Devices&path=` etc URL scheme that allows you quickly open the System Preferences app in a particular place. This is not (yet?) present in macOS so you have alternatives.
+
+* You can use `x-apple.systempreferences` scheme
+	* this has been deprecated since 10.13, but still works for some settings sections
+	* e.g. `open x-apple.systempreferences:com.apple.Desktop-Settings.extension`
+	* for a list see https://github.com/bvanpeski/SystemPreferences/blob/main/macos_preferencepanes-Ventura.md
+* Or you can use AppleScript
+
+```perl
+tell application "System Preferences"
+    reveal anchor "input" of ¬
+        pane id "com.apple.Sound-Settings.extension"
+    activate
+end tell
+```
+
+* Notes on using AppleScript for System Settings shortcuts
+	* See the list of panes in https://developer.apple.com/documentation/devicemanagement/systempreferences
+	* see [SuperUser](https://superuser.com/a/1642983) for a more robust and varied script that actually tweaks settings for you
+	* a more extensive [reddit Guide to System Settings with System Events automation templates](https://www.reddit.com/r/applescript/comments/118ivys/updateguide_macos_ventura_system_settings_with/)
+	* to identify anchors in the pane use `Script Editor` to run the following whilst the pane is open:
+		* ` tell application "System Settings" to get anchors of current pane `
+		* credit https://stackoverflow.com/q/24701362#comment38330235_24703872
+	* 
 
