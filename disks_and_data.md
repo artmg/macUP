@@ -318,7 +318,34 @@ If you are not sure that you have it configured properly already, then answer "D
 * About encryption in TM backup:
 	* https://support.apple.com/kb/ph25615?locale=en_US
 
+### folders to exclude
 
+As well as using the Settings dialog, you can control the backup exclusions list with
+
+```zsh
+# exclude a folder or volume:
+sudo tmutil addexclusion /path/to/folder
+        
+# exclude persistently (even if the file is moved) with the `-p` flag
+sudo tmutil addexclusion -p /path/to/folder
+        
+# remove exclusion
+sudo tmutil removeexclusion /path/to/folder
+        
+# list exclusions - paths and volumes
+defaults read /Library/Preferences/com.apple.TimeMachine.plist SkipPaths
+defaults read /Library/Preferences/com.apple.TimeMachine.plist ExcludedVolumeUUIDs
+        
+# check whether item excluded (-p says permanent or not)
+tmutil isexcluded -p /path/to/folder
+        
+# use flags to determine permanent exclusions
+sudo mdfind "com_apple_backup_excludeItem = 'com.apple.backupd'"
+
+# see system exclusions
+plutil -p /System/Library/CoreServices/backupd.bundle/Contents/Resources/StdExclusions.plist
+
+```
 ### Log diagnostics
 
 ```
