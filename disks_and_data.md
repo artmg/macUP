@@ -344,6 +344,7 @@ sudo mdfind "com_apple_backup_excludeItem = 'com.apple.backupd'"
 
 # see system exclusions
 plutil -p /System/Library/CoreServices/backupd.bundle/Contents/Resources/StdExclusions.plist
+# that command now deprecated, see https://apple.stackexchange.com/a/440605
 
 ```
 ### Log diagnostics
