@@ -318,6 +318,23 @@ Disconnecting iCloud when moving a library on your local device (ref https://www
 
 The processes involved in the synchronisation are `cloudd` that directs `cloudphotod` to fetch the content and `photolibraryd` that organises it on arrival.
 
+### Display
+
+#### Rotate integral screen
+
+Laptops have rather fixed screens, so you view most things in landscape orientation. However, if you have a portrait document, and you want to make it fill the screen, can you rotate the macos desktop into portrait mode?
+
+You can, but it needs a special keystroke, and the mouse does not rotate with the sceen, so you might find it difficult to 'drive' your rotated desktop unless you have a mouse connected:
+
+* Open System Settings
+* Hold the OPTION key
+* Click on Displays
+	* if you only have the Built-in Display connected, the following option only appears if you hold the keyboard button at the moment you click on the Displays setting navigation option 
+* You will now see the Rotation option
+* rotate the display to 90 / 270 and hold the laptop in either direction
+* good luck moving the pointer with the trackpad if you do Accept the new settings!
+
+This was tested with a MacBook Air M2 2022 running macOS sequoia 15
 
 ## VirtualBox tips
 
