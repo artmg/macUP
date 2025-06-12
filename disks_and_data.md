@@ -304,8 +304,12 @@ If you are not sure that you have it configured properly already, then answer "D
 
 * Time Machine partition must be HFS+
 	* Not recommended to be APFS
+		* need to double-check in case this has changed with recent versions
 	* suggestions around 2x to 3x capacity of internal drive
 		-  http://osxdaily.com/2013/05/01/use-single-hard-drive-time-machine-and-file-storage/
+	- recommended to encrypt when creating partition
+		- because converting existing partition to encrypted will take a very long time
+		- choose HFS+, case sensitive, encrypted
 * Use Disk Utility (Launchpad / Other)
 	* Unmount and erase any NTFS partition supplied
 	* Use the Partition Tab 
@@ -314,9 +318,12 @@ If you are not sure that you have it configured properly already, then answer "D
 ### more technical background
 
 * Time Machine uses something called sparse bundle
-		* https://discussions.apple.com/thread/7728281
-* About encryption in TM backup:
-	* https://support.apple.com/kb/ph25615?locale=en_US
+	* https://discussions.apple.com/thread/7728281
+* Encrypting physically-attached TimeMachine volumes uses CoreStorage Logical Volume encryption
+	* AES_XTS? requiring a password to mount (reference articles lost) 
+	* CoreStorage is a limited scope LVM (see https://www.ufsexplorer.com/articles/storage-technologies/apple-core-storage/)
+* see also the archive from James 'Pondini' Pond's TM FAQ and Troubleshooting guide
+	* https://web.archive.org/web/20170903115451/http://pondini.org:80/TM/FAQ.html
 
 ### folders to exclude
 
