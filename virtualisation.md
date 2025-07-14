@@ -79,7 +79,7 @@ podman machine stop; podman machine start
 
 Optional GUI: ` brew install podman-desktop `
 
-### example usage
+### example Podman usage
 
 Once you have started your machine (see above), to run an interactive vm (one you can shutdown with Cmd-C from command line)
 
