@@ -128,3 +128,19 @@ See:
 	* https://www.markhneedham.com/blog/2023/10/11/ollama-few-shot-prompting-experiments-llama2-7b/
 * 
 
+# Agentic Browsers
+
+Continuing with the theme of running open models locally, there are also options for agentic browsing, using open-source tools:
+
+* Nanobrowser https://github.com/nanobrowser/nanobrowser/ 
+	* Chrome plug-in
+	* Install from Chrome App Store 
+* BrowserOS https://github.com/browseros-ai/BrowserOS
+	* fully fledged browser built on Chromium
+	* DMG not yet in brew
+* Playwright MCP server https://github.com/microsoft/playwright-mcp
+	* Instead of adding an LLM **into** a browser, this allows an LLM to use a browser
+	* although developed by Microsoft, the MCP server as well as Playwright itself are entirely open-source
+* 
+
+
